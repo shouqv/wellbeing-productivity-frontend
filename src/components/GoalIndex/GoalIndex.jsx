@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
-
+import { getAllGoalsService } from '../../services/GoalService'
 
 
 function GoalIndex() {
@@ -10,7 +10,8 @@ function GoalIndex() {
 
     async function getAllGoals() {
         try {
-            // will add the call to the backend
+            const response = await getAllGoalsService()
+            setGoal(response.data)
         }
         catch (error) { console.log("Error in getAllGoals", error) }
     }
@@ -22,21 +23,23 @@ function GoalIndex() {
 
     return (
         <div>
+            
             <h1>2025 Goals</h1>
+            <ul>
             {
                 goals.length ?
                     goals.map((goal, index) => {
                         return (
-                            <div key={index}>
+                            <li key={index}>
                             
-                                <h2>{goal.title} </h2>
-                            
-                            </div>
+                                <h3>{goal.content} </h3>
+                            </li>
                         )
                     })
                     :
                     <h2>No Goals</h2>
             }
+            </ul>
         </div>
     )
 }
