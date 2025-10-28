@@ -2,12 +2,19 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
 import { getAllTasksService } from '../../services/TaskService'
+import Calender from '../Calneder/Calender'
 
 
 function TaskIndex() {
 
     const [tasks, setTasks] = useState(null)
     const [filteredTasks, setFilteredTasks] = useState([])
+    const [calnderTasks , setCalnderTasks] = useState([])
+    const priority = {
+        1: 'Low',
+        2: 'Medium',
+        3: 'High'
+    }
 
     async function getAllTasks() {
         try {
@@ -15,6 +22,7 @@ function TaskIndex() {
             console.log(response.data)
             setTasks(response.data)
             console.log(tasks)
+            setCalnderTasks([...response.data.pending_tasks , ...response.data.in_progress_tasks ])
         }
         catch (error) { console.log("Error in getAllTasks", error) }
     }
@@ -65,6 +73,9 @@ function TaskIndex() {
                                 <li key={index}>
 
                                     <h3>{task.content} </h3>
+                                    <p>status: {task.status}</p>
+                                    <p>priority: {priority[task.priority]}</p>
+                                    <p>Date: {task.date}</p>
                                 </li>
                             )
                         })
@@ -72,6 +83,10 @@ function TaskIndex() {
                         <h2>No Tasks</h2>
                 }
             </ul>
+
+            <div>
+                <Calender tasks={calnderTasks}/>
+            </div>
         </div>
     )
 }
