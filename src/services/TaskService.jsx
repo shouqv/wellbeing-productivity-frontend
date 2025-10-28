@@ -43,4 +43,12 @@ async function updateTaskService(formData , taskId) {
         console.log(`Error: ${error}`)
     }
 }
-export { getAllTasksService, updateTaskService, addTaskService, getSingleTaskSercive}
+async function deleteTaskService( taskId) {
+    try {
+        const response = await axios.delete(`${BASE_URL}/tasks/${taskId}/`)
+        return response
+    } catch (error) {
+        console.log(`Error: ${error}`)
+    }
+}
+export { getAllTasksService, updateTaskService, addTaskService, getSingleTaskSercive , deleteTaskService}

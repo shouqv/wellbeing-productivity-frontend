@@ -4,6 +4,7 @@ import axios from 'axios'
 import { getAllTasksService } from '../../services/TaskService'
 import Calender from '../Calneder/Calender'
 import TaskForm from '../TaskForm/TaskForm'
+import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
 
 
 function TaskIndex() {
@@ -13,9 +14,13 @@ function TaskIndex() {
     const [filter, setFilter] = useState('all')
     // below gets all tasks to be in the calender
     const [calnderTasks, setCalnderTasks] = useState([])
-    const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+    // const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+    const [date, setDate] = useState(
+        new Date().toLocaleDateString('en-CA')
+    )
     const [showTaskForm, setShowTaskForm] = useState(false)
-    const [taskId , setTaskId ] = useState(null)
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false)
+    const [taskId, setTaskId] = useState(null)
 
     const priority = {
         1: 'Low',
@@ -36,7 +41,11 @@ function TaskIndex() {
     // the tasks for that day
     async function getTodayTask(dateCalender) {
         try {
-            if (!dateCalender) { dateCalender = new Date().toISOString().split('T')[0] }
+            if (!dateCalender) {
+                // dateCalender = new Date().toISOString().split('T')[0]
+                // below gets the user specific date
+                dateCalender = new Date().toLocaleDateString('en-CA') 
+            }
             const response = await getAllTasksService(dateCalender)
             console.log(response.data)
             setTodayTasks(response.data)
@@ -95,9 +104,9 @@ function TaskIndex() {
 
     return (
         <div>
-            
+
             <h1>Today tasks</h1> <button onClick={() => {
-                setShowTaskForm(true) 
+                setShowTaskForm(true)
                 setTaskId(null)
             }}>+</button>
             <div>
@@ -119,10 +128,14 @@ function TaskIndex() {
                                         <p>priority: {priority[task.priority]}</p>
                                         <p>Date: {task.date}</p>
                                         <button onClick={() => {
+                                            setShowConfirmDelete(true)
+                                            setTaskId(task.id)
+                                        }}>Delete</button>
+                                        <button onClick={() => {
                                             setShowTaskForm(true)
                                             setTaskId(task.id)
                                         }}>Edit</button>
-                                    
+
                                     </li>
                                 )
                             })
@@ -146,13 +159,23 @@ function TaskIndex() {
                 
                 lastly showTaskForm , just control if i want it to be visisble or not
                 */}
-                <TaskForm showTaskForm={showTaskForm} 
-                setShowTaskForm={setShowTaskForm} 
-                date={date} 
-                getTodayTask={getTodayTask} 
-                getAllTasks={getAllTasks} 
-                taskId = {taskId}
-                setTaskId= {setTaskId}/>
+                <TaskForm showTaskForm={showTaskForm}
+                    setShowTaskForm={setShowTaskForm}
+                    date={date}
+                    getTodayTask={getTodayTask}
+                    getAllTasks={getAllTasks}
+                    taskId={taskId}
+                    setTaskId={setTaskId} />
+
+
+                <ConfirmDelete
+                    showConfirmDelete={showConfirmDelete}
+                    setShowConfirmDelete={setShowConfirmDelete}
+                    date={date}
+                    getTodayTask={getTodayTask}
+                    getAllTasks={getAllTasks}
+                    taskId={taskId}
+                    setTaskId={setTaskId} />
 
                 {/* calenderTasks adds all tasks as events in the component
 
@@ -160,6 +183,9 @@ function TaskIndex() {
                 a task to exactly the date you navigated to using the calender
                  */}
                 <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
+
+
+
 
             </div>
         </div>
