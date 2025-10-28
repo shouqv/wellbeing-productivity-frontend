@@ -15,7 +15,7 @@ import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls'
 // and https://github.com/schedule-x/schedule-x/blob/main/packages/calendar-controls/src/calendar-controls-plugin.impl.ts
 // for the below code, and i have customized it based on my needs
 
-function Calender({ tasks , getTodayTask}) {
+function Calender({ tasks , getTodayTask , setDate}) {
     const eventsService = useState(() => createEventsServicePlugin())[0]
     const calendarControls = useState(() => createCalendarControlsPlugin({ showToday: true, }))[0]
 
@@ -28,6 +28,8 @@ function Calender({ tasks , getTodayTask}) {
         callbacks: {
             onSelectedDateUpdate(date) {
                 console.log('Date picked by user', date.toString())
+                
+                setDate(date.toString())
                 getTodayTask(date.toString())
             }
         }

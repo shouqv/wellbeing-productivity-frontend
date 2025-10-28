@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import { getAllTasksService } from '../../services/TaskService'
 import Calender from '../Calneder/Calender'
+import TaskForm from '../TaskForm/TaskForm'
 
 
 function TaskIndex() {
@@ -12,6 +13,7 @@ function TaskIndex() {
     const [filter, setFilter] = useState('all')
     // below gets all tasks to be in the calender
     const [calnderTasks, setCalnderTasks] = useState([])
+    const [date , setDate] = useState(new Date().toISOString().split('T')[0])
 
     const priority = {
         1: 'Low',
@@ -27,11 +29,10 @@ function TaskIndex() {
         catch (error) { console.log("Error in getAllTasks", error) }
     }
 
-    async function getTodayTask(date) {
+    async function getTodayTask(dateCalender) {
         try {
-            if (!date) { date = new Date().toISOString().split('T')[0] }
-
-            const response = await getAllTasksService(date)
+            if (!dateCalender) { dateCalender = new Date().toISOString().split('T')[0] }
+            const response = await getAllTasksService(dateCalender)
             console.log(response.data)
             setTodayTasks(response.data)
             setFilter('all')
@@ -115,7 +116,9 @@ function TaskIndex() {
             </ul>
 
             <div style = {{width:'50vw'}}>
-                <Calender tasks={calnderTasks} getTodayTask={getTodayTask} />
+                <TaskForm show={true} date = {date} />
+                <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
+                
             </div>
         </div>
     )
