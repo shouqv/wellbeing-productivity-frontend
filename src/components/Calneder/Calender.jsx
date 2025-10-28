@@ -12,16 +12,23 @@ import '@schedule-x/theme-default/dist/index.css'
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls'
 
 // crediting the source: https://schedule-x.dev/docs/frameworks/react
+// and https://github.com/schedule-x/schedule-x/blob/main/packages/calendar-controls/src/calendar-controls-plugin.impl.ts
 // for the below code, and i have customized it based on my needs
 function Calender({ tasks }) {
     const eventsService = useState(() => createEventsServicePlugin())[0]
-    const calendarControls = createCalendarControlsPlugin()
+    const calendarControls = useState(() => createCalendarControlsPlugin())[0]
 
 
     const calendar = useCalendarApp({
+        isDark: true,
         views: [createViewDay(), createViewMonthAgenda(), createViewMonthGrid(), createViewWeek()],
         events: [],
-        plugins: [eventsService]
+        plugins: [eventsService, calendarControls],
+        callbacks: {
+            onSelectedDateUpdate(date) {
+                console.log('Date picked by user', date.toString())
+            }
+        }
     })
 
     useEffect(() => {
@@ -35,12 +42,15 @@ function Calender({ tasks }) {
 
             eventsService.set(mappedEvents);
         }
-         
-    }, [tasks]);
+
+    }, [tasks, eventsService]);
 
     useEffect(() => {
-       
-    }, []);
+        if (calendar) {
+            const initialDate = calendarControls.getDate()
+            console.log('Initial date', initialDate.toString())
+        }
+    }, [calendar])
 
     return (
         <div>
