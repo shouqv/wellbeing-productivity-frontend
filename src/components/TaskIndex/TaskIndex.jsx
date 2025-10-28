@@ -13,7 +13,9 @@ function TaskIndex() {
     const [filter, setFilter] = useState('all')
     // below gets all tasks to be in the calender
     const [calnderTasks, setCalnderTasks] = useState([])
-    const [date , setDate] = useState(new Date().toISOString().split('T')[0])
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+    const [showTaskForm, setShowTaskForm] = useState(false)
+    const [taskId , setTaskId ] = useState(null)
 
     const priority = {
         1: 'Low',
@@ -29,12 +31,17 @@ function TaskIndex() {
         catch (error) { console.log("Error in getAllTasks", error) }
     }
 
+    // the below method get the tasks for a specific day from the backend,
+    // if the user from the calender compnent chose a date, this method will be called to retirve 
+    // the tasks for that day
     async function getTodayTask(dateCalender) {
         try {
             if (!dateCalender) { dateCalender = new Date().toISOString().split('T')[0] }
             const response = await getAllTasksService(dateCalender)
             console.log(response.data)
             setTodayTasks(response.data)
+            // TODO - rememeber that the below can be deleted
+            // if i wanted to keep the filter across days and have the user remove it by himself
             setFilter('all')
         }
         catch (error) { console.log("Error in getAllTasks", error) }
@@ -43,20 +50,23 @@ function TaskIndex() {
 
 
     useEffect(() => {
-        // gets all the tasks to show it as events in the calender
+        // gets all the tasks to show it as events in the calender compnent
         getAllTasks()
-        // get the tasks for today when the user first navigate to it
+        // get the tasks for today when the user first navigate to this page
         getTodayTask()
         console.log(todayTasks)
     }, [])
 
     useEffect(() => {
         // if the user changed the date, the getTodayTask will be called
-        // hecne the tasks will change then this will be called to filter 
+        // hecne the tasks will change, so to reflect the change on the screen
+        //  the below method will be called, since it is what prints the tasks to the user
         getTasksByFilter(filter);
     }, [todayTasks]);
 
     const getTasksByFilter = (filter) => {
+        // i have made the filter as a state, so that when you navigate to another date
+        // i can set the filter back to all , in the getTodayTask() method as it will be called from the calender compnent
         setFilter(filter)
         console.log("inside")
         if (!todayTasks) return
@@ -85,8 +95,11 @@ function TaskIndex() {
 
     return (
         <div>
-
-            <h1>Today tasks</h1>
+            
+            <h1>Today tasks</h1> <button onClick={() => {
+                setShowTaskForm(true) 
+                setTaskId(null)
+            }}>+</button>
             <div>
                 <button onClick={() => getTasksByFilter('all')}>All</button>
                 <button onClick={() => getTasksByFilter('pending')}>Pending</button>
@@ -105,6 +118,11 @@ function TaskIndex() {
                                         <p>status: {task.status}</p>
                                         <p>priority: {priority[task.priority]}</p>
                                         <p>Date: {task.date}</p>
+                                        <button onClick={() => {
+                                            setShowTaskForm(true)
+                                            setTaskId(task.id)
+                                        }}>Edit</button>
+                                    
                                     </li>
                                 )
                             })
@@ -115,10 +133,34 @@ function TaskIndex() {
                 }
             </ul>
 
-            <div style = {{width:'50vw'}}>
-                <TaskForm show={true} date = {date} />
-                <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
+            <div style={{ width: '50vw' }}>
+                {/* the below, the task form is used for both updating and creating.
+                i have passed the date, so that user can navigate using the calender and if they pressed the + they can add at that date
+
+                i have passed getTodayTask and getAllTasks , so that when the user add a task, the task will render on the screen becuase
+                the todaytask will change hence the filteredtasks and it will be reflected in the calender too
                 
+                the task id here, since im not passing it as a param, i passed it as a state so that 
+                i can change it and have the form be either for adding when its null or editing an
+                existing task. Also its a state mainly because i wanted it to be like a popup windo, keeping the user in the same route/component
+                
+                lastly showTaskForm , just control if i want it to be visisble or not
+                */}
+                <TaskForm showTaskForm={showTaskForm} 
+                setShowTaskForm={setShowTaskForm} 
+                date={date} 
+                getTodayTask={getTodayTask} 
+                getAllTasks={getAllTasks} 
+                taskId = {taskId}
+                setTaskId= {setTaskId}/>
+
+                {/* calenderTasks adds all tasks as events in the component
+
+                setDate helps sets the date to whatever date chosen in the calender component so that if you clicked the plus button it will add
+                a task to exactly the date you navigated to using the calender
+                 */}
+                <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
+
             </div>
         </div>
     )
