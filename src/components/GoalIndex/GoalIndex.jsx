@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
 import { getAllGoalsService } from '../../services/GoalService'
+import GoalForm from '../GoalForm/GoalForm'
 
 
 function GoalIndex() {
 
     const [goals, setGoal] = useState([])
+    const [showGoalForm, setShowGoalForm] = useState(false)
+    const [goalId, setGoalId] = useState(null)
 
     async function getAllGoals() {
         try {
@@ -23,23 +26,38 @@ function GoalIndex() {
 
     return (
         <div>
-            
-            <h1>2025 Goals</h1>
+
+            <h1>2025 Goals</h1> <button onClick={() => {
+                setShowGoalForm(true)
+                setGoalId(null)
+            }}>+</button>
             <ul>
-            {
-                goals.length ?
-                    goals.map((goal, index) => {
-                        return (
-                            <li key={index}>
-                            
-                                <h3>{goal.content} </h3>
-                            </li>
-                        )
-                    })
-                    :
-                    <h2>No Goals</h2>
-            }
+                {
+                    goals.length ?
+                        goals.map((goal, index) => {
+                            return (
+                                <li key={index}>
+
+                                    <h3>{goal.content} </h3>
+                                    <button onClick={() => {
+                                        setShowGoalForm(true)
+                                        setGoalId(goal.id)
+                                    }}>Edit</button>
+                                </li>
+                            )
+                        })
+                        :
+                        <h2>No Goals</h2>
+                }
             </ul>
+
+            <GoalForm
+                showGoalForm={showGoalForm}
+                setShowGoalForm={setShowGoalForm}
+                goalId={goalId}
+                setGoalId={setGoalId}
+                getAllGoals={getAllGoals}
+            />
         </div>
     )
 }
