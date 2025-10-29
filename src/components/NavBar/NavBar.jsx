@@ -8,7 +8,7 @@ function NavBar() {
         <Link to={''}>Vision</Link>
         <Link to={'/goals'}>Goals</Link>
         <Link to={'/tasks'}>Tasks</Link>
-        <Link to={''}>How you feeling?</Link>
+        <Link to={'/mood'}>How you feeling?</Link>
     </nav>
   )
 }
