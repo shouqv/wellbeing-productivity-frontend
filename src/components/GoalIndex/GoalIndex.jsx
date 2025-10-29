@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
-import { getAllGoalsService } from '../../services/GoalService'
+import { getAllGoalsService, deleteSingleGoalService } from '../../services/GoalService'
 import GoalForm from '../GoalForm/GoalForm'
+import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
 
 
 function GoalIndex() {
 
-    const [goals, setGoal] = useState([])
+    const [goals, setGoals] = useState([])
     const [showGoalForm, setShowGoalForm] = useState(false)
     const [goalId, setGoalId] = useState(null)
+    const [goalName, setGoalName] = useState('')
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 
     async function getAllGoals() {
         try {
             const response = await getAllGoalsService()
-            setGoal(response.data)
+            setGoals(response.data)
         }
         catch (error) { console.log("Error in getAllGoals", error) }
     }
@@ -43,6 +46,13 @@ function GoalIndex() {
                                         setShowGoalForm(true)
                                         setGoalId(goal.id)
                                     }}>Edit</button>
+
+                                    <button onClick={() => {
+                                        setShowConfirmDelete(true)
+                                        setGoalId(goal.id)
+                                        setGoalName(goal.content)
+                                    }}>Delete</button>
+
                                 </li>
                             )
                         })
@@ -57,6 +67,18 @@ function GoalIndex() {
                 goalId={goalId}
                 setGoalId={setGoalId}
                 getAllGoals={getAllGoals}
+            />
+
+
+            <ConfirmDelete
+                showConfirmDelete={showConfirmDelete}
+                setShowConfirmDelete={setShowConfirmDelete}
+
+                getAllGoals = {getAllGoals}
+                deleteServiceFunction={deleteSingleGoalService}
+                elementId={goalId}
+                setElementId={setGoalId}
+                text={`the goal ${goalName}`}
             />
         </div>
     )

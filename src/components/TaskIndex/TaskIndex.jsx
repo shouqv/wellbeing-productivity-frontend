@@ -5,6 +5,7 @@ import { getAllTasksService } from '../../services/TaskService'
 import Calender from '../Calneder/Calender'
 import TaskForm from '../TaskForm/TaskForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
+import { deleteTaskService } from '../../services/TaskService'
 
 
 function TaskIndex() {
@@ -21,6 +22,7 @@ function TaskIndex() {
     const [showTaskForm, setShowTaskForm] = useState(false)
     const [showConfirmDelete, setShowConfirmDelete] = useState(false)
     const [taskId, setTaskId] = useState(null)
+    const [taskName , setTaskName] = useState('')
 
     const priority = {
         1: 'Low',
@@ -130,6 +132,7 @@ function TaskIndex() {
                                         <button onClick={() => {
                                             setShowConfirmDelete(true)
                                             setTaskId(task.id)
+                                            setTaskName(task.content)
                                         }}>Delete</button>
                                         <button onClick={() => {
                                             setShowTaskForm(true)
@@ -174,8 +177,12 @@ function TaskIndex() {
                     date={date}
                     getTodayTask={getTodayTask}
                     getAllTasks={getAllTasks}
-                    taskId={taskId}
-                    setTaskId={setTaskId} />
+
+                    deleteServiceFunction={deleteTaskService}
+                    elementId={taskId}
+                    setElementId={setTaskId} 
+                    text = {`the task ${taskName}`}
+                    />
 
                 {/* calenderTasks adds all tasks as events in the component
 

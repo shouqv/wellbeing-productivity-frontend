@@ -69,6 +69,14 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
     useEffect(() => {
         if (goalId) {
             getSingleGoal()
+        } else {
+            setFormData({
+                content: '',
+                status: 'active',
+                year: new Date().getFullYear().toString(),
+                // for now
+                user: 1
+            })
         }
     }, [goalId])
 

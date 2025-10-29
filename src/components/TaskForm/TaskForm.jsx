@@ -91,6 +91,14 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
     useEffect(() => {
         if (taskId) {
             getSingleTask()
+        } else {
+            setFormData({
+                content: '',
+                date: date,
+                priority: '1',
+                status: 'pending',
+                user: 1
+            })
         }
     }, [taskId])
 

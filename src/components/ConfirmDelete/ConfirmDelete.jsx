@@ -1,20 +1,24 @@
 import React from 'react'
-import { deleteTaskService } from '../../services/TaskService'
-function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, taskId , getAllTasks, getTodayTask, setTaskId , date }) {
+
+function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, setElementId, deleteServiceFunction, getAllTasks, getTodayTask, date, getAllGoals , text }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
         let response = {}
-        if (taskId) {
-            response = await deleteTaskService(taskId)
-            getAllTasks()
-            getTodayTask(date)
-
+        if (elementId) {
+            response = await deleteServiceFunction(elementId)
+            if (date && getAllTasks && getTodayTask) {
+                getAllTasks()
+                getTodayTask(date)
+            }
+            else if (getAllGoals){
+                getAllGoals()
+            }
         }
 
-        if (response.status === 204 ) {
-                    setTaskId(null)
-                    setShowConfirmDelete(false)
+        if (response.status === 204) {
+            setElementId(null)
+            setShowConfirmDelete(false)
         }
 
 
@@ -24,10 +28,10 @@ function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, taskId , getAl
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <h2>Are you sure you want to delete: </h2>
+                <h2>Are you sure you want to delete {text}?: </h2>
                 <button type="submit">Confirm</button>
-                <button type="button" onClick={()=>{
-                    setTaskId(null)
+                <button type="button" onClick={() => {
+                    setElementId(null)
                     setShowConfirmDelete(false)
                 }}>Cancel</button>
             </form>
