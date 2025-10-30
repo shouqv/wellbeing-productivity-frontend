@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
-import { addTaskService, updateTaskService, getSingleTaskSercive } from '../../services/TaskService'
+import { addTaskService, updateTaskService, getSingleTaskSercive, unLinkTaslToGoalService, linkTaslToGoalService } from '../../services/TaskService'
 
 // {
 //  {
@@ -24,6 +24,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         user: 1
     })
 
+    const [checkedGoals, setCheckedGoals] = useState([])
+    const [initialCheckedGoals, setInitialCheckedGoals] = useState([])
 
     function handleChange(event) {
         setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -34,27 +36,42 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         const response = await getSingleTaskSercive(taskId)
         console.log(response.data)
         setFormData(response.data)
+
+        const linkedGoalIds = response.data.goals_belong_to_task?.map(g => g.id) || []
+        setCheckedGoals(linkedGoalIds)
+        setInitialCheckedGoals(linkedGoalIds)
     }
 
 
     console.log("from the form" + taskId)
+
     async function handleSubmit(event) {
         event.preventDefault()
         let response = {}
         setFormData({ ...formData, priority: Number(formData['priority']) })
+        console.log(formData)
         if (taskId) {
             response = await updateTaskService(formData, taskId)
-            getAllTasks()
-            getTodayTask(formData.date)
 
         } else {
             response = await addTaskService(formData)
-            getAllTasks()
-            getTodayTask(formData.date)
         }
 
         console.log(response)
         if (response.status === 201 || response.status === 200) {
+
+            const removedRelationship = initialCheckedGoals.filter(element => !checkedGoals.includes(element));
+            const addedRelationship = checkedGoals.filter(element => !initialCheckedGoals.includes(element))
+
+            for (const goalId of removedRelationship) {
+                await unLinkTaslToGoalService(response.data.id, goalId);
+            }
+
+            for (const goalId of addedRelationship) {
+                await linkTaslToGoalService(response.data.id, goalId);
+            }
+            getAllTasks()
+            getTodayTask(formData.date)
             // close the model
             setShowTaskForm(false)
             setTaskId(null)
@@ -68,6 +85,15 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         }
 
 
+    }
+    function handleGoalToggle(goalId) {
+        if (checkedGoals.includes(goalId)) {
+            // this checks if it exist, it will be removed
+            setCheckedGoals(checkedGoals.filter(id => id !== goalId));
+        } else {
+
+            setCheckedGoals([...checkedGoals, goalId]);
+        }
     }
 
     // becuase the date in the TaskIndex has the inital value to Today date,
@@ -138,6 +164,34 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                         <option value="completed">Completed</option>
                     </select>
                 </div>
+                <p>linked goals:</p>
+                {taskId ? formData.goals_belong_to_task?.map(goal => {
+                    return <label>
+                        <input
+                            type="checkbox"
+                            checked={checkedGoals.includes(goal.id)}
+                            onChange={() => handleGoalToggle(goal.id)}
+                        />
+                        {goal.content}
+                    </label>
+                })
+
+                    : <></>}
+                <p>unlinked goals:</p>
+                {formData.goals_doesnot_belong_to_task?.map(goal => {
+                    return <label>
+                        <input
+                            type="checkbox"
+                            checked={checkedGoals.includes(goal.id)}
+                            onChange={() => handleGoalToggle(goal.id)}
+                        />
+                        {goal.content}
+                    </label>
+                })}
+
+
+
+
 
                 <button type='submit'>Submit</button>
             </form>
