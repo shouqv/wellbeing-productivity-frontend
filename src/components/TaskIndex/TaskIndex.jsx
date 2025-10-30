@@ -129,6 +129,22 @@ function TaskIndex() {
                                         <p>status: {task.status}</p>
                                         <p>priority: {priority[task.priority]}</p>
                                         <p>Date: {task.date}</p>
+                                        
+                                        {
+                                            task.goals.length?
+                                            <p>goals:</p>:
+                                            <></>
+                                        }
+
+                                        {
+                                            task.goals.length?
+                                            task.goals.map((goal , index) =>
+                                                {return <p key = {index}>{goal.content}</p>} 
+                                            ):
+                                            <></>
+                                        }
+
+
                                         <button onClick={() => {
                                             setShowConfirmDelete(true)
                                             setTaskId(task.id)
