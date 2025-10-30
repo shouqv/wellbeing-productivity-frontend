@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
 import { addTaskService, updateTaskService, getSingleTaskSercive, unLinkTaslToGoalService, linkTaslToGoalService } from '../../services/TaskService'
+import { getAllGoalsService } from '../../services/GoalService'
 
 // {
 //  {
@@ -23,7 +24,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         // for now
         user: 1
     })
-
+    const [goals, setGoals] = useState([])
     const [checkedGoals, setCheckedGoals] = useState([])
     const [initialCheckedGoals, setInitialCheckedGoals] = useState([])
 
@@ -31,6 +32,20 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         setFormData({ ...formData, [event.target.name]: event.target.value })
         console.log(formData)
     }
+
+    async function getAllGoals() {
+        try {
+            const response = await getAllGoalsService()
+            setGoals(response.data)
+        }
+        catch (error) { console.log("Error in getAllGoals", error) }
+    }
+
+    useEffect(() => {
+        if (!taskId) {
+            getAllGoals()
+        }
+    }, [])
 
     async function getSingleTask() {
         const response = await getSingleTaskSercive(taskId)
@@ -75,6 +90,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
             // close the model
             setShowTaskForm(false)
             setTaskId(null)
+            setCheckedGoals([])
+            setInitialCheckedGoals([])
             setFormData({
                 content: '',
                 date: date,
@@ -164,7 +181,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-                <p>linked goals:</p>
+                {/* TODO: enhance the below code */}
+                {/* <p>linked goals:</p> */}
                 {taskId ? formData.goals_belong_to_task?.map(goal => {
                     return <label>
                         <input
@@ -175,9 +193,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                         {goal.content}
                     </label>
                 })
-
                     : <></>}
-                <p>unlinked goals:</p>
+                {/* <p>unlinked goals:</p> */}
                 {formData.goals_doesnot_belong_to_task?.map(goal => {
                     return <label>
                         <input
@@ -188,6 +205,20 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                         {goal.content}
                     </label>
                 })}
+                <p>all goals</p>
+                {
+                    taskId ?<></>:
+                    goals.map(goal => {
+                        return <label>
+                            <input
+                                type="checkbox"
+                                checked={checkedGoals.includes(goal.id)}
+                                onChange={() => handleGoalToggle(goal.id)}
+                            />
+                            {goal.content}
+                        </label>
+                    })
+                }
 
 
 

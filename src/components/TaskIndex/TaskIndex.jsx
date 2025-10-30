@@ -98,7 +98,7 @@ function TaskIndex() {
                     ...todayTasks.pending_tasks,
                     ...todayTasks.in_progress_tasks,
                     ...todayTasks.completed_tasks
-                ])
+                ].sort((a, b) => b.priority - a.priority))
         }
     };
 
