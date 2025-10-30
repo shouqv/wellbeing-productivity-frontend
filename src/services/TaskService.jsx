@@ -51,4 +51,24 @@ async function deleteTaskService( taskId) {
         console.log(`Error: ${error}`)
     }
 }
-export { getAllTasksService, updateTaskService, addTaskService, getSingleTaskSercive , deleteTaskService}
+
+
+
+async function linkTaslToGoalService(taskId , goalId){
+        try {
+        const response = await axios.patch(`${BASE_URL}/tasks/${taskId}/link-goal/${goalId}/`)
+        return response
+    } catch (error) {
+        console.log(`Error: ${error}`)
+    }
+}
+
+async function unLinkTaslToGoalService(taskId , goalId){
+        try {
+        const response = await axios.patch(`${BASE_URL}/tasks/${taskId}/unlink-goal/${goalId}/`)
+        return response
+    } catch (error) {
+        console.log(`Error: ${error}`)
+    }
+}
+export { getAllTasksService, updateTaskService, addTaskService, getSingleTaskSercive , deleteTaskService , linkTaslToGoalService , unLinkTaslToGoalService}
