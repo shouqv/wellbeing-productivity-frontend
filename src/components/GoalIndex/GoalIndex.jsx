@@ -6,7 +6,7 @@ import GoalForm from '../GoalForm/GoalForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
 
 
-function GoalIndex() {
+function GoalIndex({user}) {
 
     const [goals, setGoals] = useState([])
     const [showGoalForm, setShowGoalForm] = useState(false)
@@ -67,6 +67,7 @@ function GoalIndex() {
                 goalId={goalId}
                 setGoalId={setGoalId}
                 getAllGoals={getAllGoals}
+                user={user}
             />
 
 

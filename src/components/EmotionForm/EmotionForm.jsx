@@ -45,7 +45,7 @@ function EmotionForm() {
     try {
       setLoading(true);
       const response = await addEmotionService({
-        user: 1,
+        // user: 1,
         emoji: selectedMood,
         feeling_text: feelingText,
       })

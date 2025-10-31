@@ -16,10 +16,13 @@
     "@schedule-x/react": "^3.3.0",
     "@schedule-x/theme-default": "^3.3.0",
     "axios": "^1.12.2",
+    "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.4",
-    "temporal-polyfill": "^0.3.0"
+    "temporal-polyfill": "^0.3.0",
+    "tldraw": "^4.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

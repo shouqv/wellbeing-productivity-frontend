@@ -22,7 +22,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         priority: '1',
         status: 'pending',
         // for now
-        user: 1
+        // user: user?.user_id
     })
     const [goals, setGoals] = useState([])
     const [checkedGoals, setCheckedGoals] = useState([])
@@ -97,7 +97,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                 date: date,
                 priority: '1',
                 status: 'pending',
-                user: 1
+                // user: user?.user_id
             })
         }
 
@@ -125,7 +125,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
             date: date,
             priority: '1',
             status: 'pending',
-            user: 1
+            // user: user?.user_id
         })
         setTaskId(null)
         setShowTaskForm(false)
@@ -140,7 +140,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                 date: date,
                 priority: '1',
                 status: 'pending',
-                user: 1
+                // user: user?.user_id
             })
         }
     }, [taskId])
@@ -155,7 +155,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                     date: date,
                     priority: '1',
                     status: 'pending',
-                    user: 1
+                    // user: user?.user_id
                 })
                 setTaskId(null)
             }}>X</button>

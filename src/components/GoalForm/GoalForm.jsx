@@ -5,13 +5,13 @@ import { addGoalsService, updateGoalService, getSingleGoalService } from '../../
 
 
 // TODO - pass the year from the user device
-function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalId }) {
+function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalId , user}) {
     const [formData, setFormData] = useState({
         content: '',
         status: 'active',
         year: new Date().getFullYear().toString(),
         // for now
-        user: 1
+        // user: user?.user_id
     })
 
     //     # REMEMBER: the below is the post req needed for goal
@@ -56,7 +56,7 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
                     status: 'active',
                     year: new Date().getFullYear().toString(),
                     // for now
-                    user: 1
+                    // user: user?.user_id
                 })
             }
             getAllGoals()
@@ -75,7 +75,7 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
                 status: 'active',
                 year: new Date().getFullYear().toString(),
                 // for now
-                user: 1
+                // user: user?.user_id
             })
         }
     }, [goalId])
@@ -90,7 +90,7 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
                     status: 'active',
                     year: new Date().getFullYear().toString(),
                     // for now
-                    user: 1
+                    // user: user?.user_id
                 })
                 setGoalId(null)
             }}>X</button>
