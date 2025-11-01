@@ -33,24 +33,24 @@ function HightPriorityTasks() {
     }, [])
 
     return (
-        <Card className="border-0" >
+        <Card className="border-0 bg-blue-900 " >
             <CardHeader>
                 <CardTitle>Today's High Priotiy Tasks</CardTitle>
-                <CardDescription>
-                </CardDescription>
             </CardHeader>
             <CardContent>
                 {hightPriorityTasks?.length
-                    ? <><div>
-                        {
-                            hightPriorityTasks.map(HPTask => {
-                                return (
-                                    <div>
-                                        {HPTask.content}
-                                    </div>
-                                )
-                            })
-                        }
+                    ? <><div className="max-h-[500px] overflow-y-auto rounded p-2">
+                        <div style={{ height: "150px" }}>
+                            {
+                                hightPriorityTasks.map((HPTask, index) => {
+                                    return (
+                                        <div key={index} className={HPTask.status === 'completed'? "text-gray-500 bg-gray-700 line-through p-2 mb-2 rounded": "text-gray-300 p-2 mb-2 rounded bg-gray-800"}>
+                                            {HPTask.content}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div></>
                     : <p>No high priority today 😮‍💨</p>}
 
