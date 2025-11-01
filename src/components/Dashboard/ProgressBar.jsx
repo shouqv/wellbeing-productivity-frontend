@@ -46,7 +46,7 @@ function ProgressBar() {
                 <CardDescription>
                     {progress === 100
                         ? "All tasks completed 🎉"
-                        : `${progress}% of today’s tasks completed`}
+                        : `${progress}% of today's tasks completed`}
                 </CardDescription>
             </CardHeader>
             <CardContent>
