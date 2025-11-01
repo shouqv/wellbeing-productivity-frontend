@@ -47,6 +47,7 @@ export default function EmojiPieChart() {
         <Card className="flex flex-col border-0">
             <CardHeader className="items-center pb-0">
                 <CardTitle>Month's Mood</CardTitle>
+                <CardDescription> write here the most used emoj/mood</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
                 <div style={{ width: 300, height: 300, margin: "0 auto" }}>
