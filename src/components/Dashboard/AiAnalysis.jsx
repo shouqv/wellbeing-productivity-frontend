@@ -9,8 +9,9 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-function HightPriorityTasks({data}) {
-    // const [hightPriorityTasks, setHightPriorityTasks] = useState([])
+function AiAnalysis({ data }) {
+    // const [weeklyEntries, setWeeklyEntries] = useState([])
+    // const [aiAnalysis, setAiAnalysis] = useState("")
 
     // useEffect(() => {
     //     async function fetchData() {
@@ -20,8 +21,10 @@ function HightPriorityTasks({data}) {
     //                 url: "http://127.0.0.1:8000/api/dashboard/",
     //             })
 
-    //             const allHPTasks = response.data.high_priority_tasks
-    //             setHightPriorityTasks(allHPTasks)
+    //             const weeklyEntries = response.data.weekly_emotions
+    //             const aiAnalysisResponse = response.data.ai_analytics
+    //             setWeeklyEntries(weeklyEntries)
+    //             setAiAnalysis(aiAnalysisResponse)
     //             console.log(response.data)
 
     //         } catch (error) {
@@ -31,29 +34,24 @@ function HightPriorityTasks({data}) {
 
     //     fetchData()
     // }, [])
-    const hightPriorityTasks = data?.high_priority_tasks || []
+    const weeklyEntries = data?.weekly_emotions || [];
+    const aiAnalysis = data?.ai_analytics || "";
 
     return (
         <Card className="border-0 bg-blue-900 " >
             <CardHeader>
-                <CardTitle>Today's High Priotiy Tasks</CardTitle>
+                <CardTitle>Insights of this week:</CardTitle>
             </CardHeader>
             <CardContent>
-                {hightPriorityTasks?.length
+                {weeklyEntries?.length
                     ? <><div className="max-h-[500px] overflow-y-auto rounded p-2">
                         <div style={{ height: "150px" }}>
-                            {
-                                hightPriorityTasks.map((HPTask, index) => {
-                                    return (
-                                        <div key={index} className={HPTask.status === 'completed' ? "text-gray-500 bg-gray-700 line-through p-2 mb-2 rounded" : "text-gray-300 p-2 mb-2 rounded bg-gray-800"}>
-                                            {HPTask.content}
-                                        </div>
-                                    )
-                                })
-                            }
+                            <p>
+                                {aiAnalysis}
+                            </p>
                         </div>
                     </div></>
-                    : <p>No high priority today 😮‍💨</p>}
+                    : <p>No Emotion entries yet😌</p>}
 
                 <CardFooter>
 
@@ -65,4 +63,4 @@ function HightPriorityTasks({data}) {
 
 
 
-export default HightPriorityTasks
+export default AiAnalysis

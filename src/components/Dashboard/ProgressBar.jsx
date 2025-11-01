@@ -9,35 +9,38 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-function ProgressBar() {
-    const [progress, setProgress] = useState(0)
-    const [totalTasks, setTotalTasks] = useState(0)
+function ProgressBar({data}) {
+    // const [progress, setProgress] = useState(0)
+    // const [totalTasks, setTotalTasks] = useState(0)
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await authRequest({
-                    method: "get",
-                    url: "http://127.0.0.1:8000/api/dashboard/",
-                })
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         try {
+    //             const response = await authRequest({
+    //                 method: "get",
+    //                 url: "http://127.0.0.1:8000/api/dashboard/",
+    //             })
 
-                const total = response.data.total_tasks
-                setTotalTasks(total)
-                const completed = response.data.completed_tasks
+    //             const total = response.data.total_tasks
+    //             setTotalTasks(total)
+    //             const completed = response.data.completed_tasks
 
-                if (total > 0) {
-                    const percentage = Math.round((completed / total) * 100)
-                    setProgress(percentage)
-                } else {
-                    setProgress(0)
-                }
-            } catch (error) {
-                console.error("Error fetching progress data:", error)
-            }
-        }
+    //             if (total > 0) {
+    //                 const percentage = Math.round((completed / total) * 100)
+    //                 setProgress(percentage)
+    //             } else {
+    //                 setProgress(0)
+    //             }
+    //         } catch (error) {
+    //             console.error("Error fetching progress data:", error)
+    //         }
+    //     }
 
-        fetchData()
-    }, [])
+    //     fetchData()
+    // }, [])
+    const totalTasks = data?.total_tasks || 0
+    const completed = data?.completed_tasks || 0
+    const progress = totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0
 
     return (
         <Card className="border-0" >

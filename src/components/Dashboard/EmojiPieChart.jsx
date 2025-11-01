@@ -14,34 +14,41 @@ import {
 // creditng https://ui.shadcn.com/charts/pie
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CFE", "#FF6699"];
 
-export default function EmojiPieChart() {
-    const [data, setData] = useState([]);
+export default function EmojiPieChart({ data }) {
+    // const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await authRequest({
-                    method: "get",
-                    url: "http://127.0.0.1:8000/api/dashboard/",
-                });
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await authRequest({
+    //                 method: "get",
+    //                 url: "http://127.0.0.1:8000/api/dashboard/",
+    //             });
 
-                const emojiCounts = response.data.emoji_counts;
+    //             const emojiCounts = response.data.emoji_counts;
 
-                const chartData = Object.keys(emojiCounts).map((emoji) => ({
-                    name: emoji,
-                    value: emojiCounts[emoji],
-                }));
+    //             const chartData = Object.keys(emojiCounts).map((emoji) => ({
+    //                 name: emoji,
+    //                 value: emojiCounts[emoji],
+    //             }));
 
-                setData(chartData);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    //             setData(chartData);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
 
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
-    if (data.length === 0) return <p>Loading chart...</p>;
+    // if (data.length === 0) return <p>Loading chart...</p>;
+
+    const emojiCounts = data?.emoji_counts || {};
+    const chartData = Object.keys(emojiCounts).map((emoji) => ({
+        name: emoji,
+        value: emojiCounts[emoji],
+    }));
+    if (chartData.length === 0) return <p>Loading chart...</p>;
 
     return (
         <Card className="flex flex-col border-0">
@@ -53,7 +60,7 @@ export default function EmojiPieChart() {
                 <div style={{ width: 300, height: 300, margin: "0 auto" }}>
                     <PieChart width={300} height={300}>
                         <Pie
-                            data={data}
+                            data={chartData}
                             dataKey="value"
                             nameKey="name"
                             cx="50%"
@@ -61,7 +68,7 @@ export default function EmojiPieChart() {
                             outerRadius={120}
                             label={({ name }) => name}
                         >
-                            {data.map((entry, index) => (
+                            {chartData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index]} />
                             ))}
                         </Pie>

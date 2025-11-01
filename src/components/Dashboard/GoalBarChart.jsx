@@ -32,37 +32,45 @@ const chartConfig = {
 }
 
 // crediting https://ui.shadcn.com/charts/bar#charts
-export function GoalBarChart() {
-    const [chartData, setChartData] = useState([])
+export function GoalBarChart({ data }) {
+    // const [chartData, setChartData] = useState([])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await authRequest({
-                    method: "get",
-                    url: "http://127.0.0.1:8000/api/dashboard/",
-                })
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await authRequest({
+    //                 method: "get",
+    //                 url: "http://127.0.0.1:8000/api/dashboard/",
+    //             })
 
-                const goalsInfo = response.data.goals_info || []
+    //             const goalsInfo = response.data.goals_info || []
 
 
-                console.log(goalsInfo)
+    //             console.log(goalsInfo)
 
-                const formattedData = goalsInfo.map((goal, index) => ({
-                    label: `Goal ${index + 1}`,
-                    goal: goal.goal_content, // first line
-                    completed: goal.completed_linked_tasks_count, // second line
-                }))
+    //             const formattedData = goalsInfo.map((goal, index) => ({
+    //                 label: `Goal ${index + 1}`,
+    //                 goal: goal.goal_content, // first line
+    //                 completed: goal.completed_linked_tasks_count, // second line
+    //             }))
 
-                setChartData(formattedData)
-            } catch (error) {
-                console.error("error fetching chart data", error)
-            }
-        }
+    //             setChartData(formattedData)
+    //         } catch (error) {
+    //             console.error("error fetching chart data", error)
+    //         }
+    //     }
 
-        fetchData()
-    }, [])
+    //     fetchData()
+    // }, [])
 
+    const goalsInfo = data?.goals_info || []
+
+    // Format data for chart
+    const chartData = goalsInfo.map((goal, index) => ({
+        label: `Goal ${index + 1}`,
+        goal: goal.goal_content,
+        completed: goal.completed_linked_tasks_count,
+    }))
     const chartWidth = Math.max(400, chartData.length * 50)
 
 
