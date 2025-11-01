@@ -2,6 +2,7 @@ import React from 'react'
 import EmojiPieChart from './EmojiPieChart'
 import ProgressBar from './ProgressBar'
 import GoalBarChart from './GoalBarChart'
+import HightPriorityTasks from './HightPriorityTasks'
 
 function Dashboard() {
   return (
@@ -9,6 +10,7 @@ function Dashboard() {
       <EmojiPieChart />
       <ProgressBar />
       <GoalBarChart/>
+      <HightPriorityTasks />
     </div>
   )
 }

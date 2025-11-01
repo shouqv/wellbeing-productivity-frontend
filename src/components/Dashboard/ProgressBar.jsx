@@ -14,7 +14,7 @@ function ProgressBar() {
     const [totalTasks, setTotalTasks] = useState(0)
 
     useEffect(() => {
-        const fetchData = async () => {
+        async function fetchData() {
             try {
                 const response = await authRequest({
                     method: "get",
