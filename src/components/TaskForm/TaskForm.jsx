@@ -208,8 +208,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                 <p>all goals</p>
                 {
                     taskId ?<></>:
-                    goals.map(goal => {
-                        return <label>
+                    goals.map((goal, index) => {
+                        return <label key={index}>
                             <input
                                 type="checkbox"
                                 checked={checkedGoals.includes(goal.id)}

@@ -22,7 +22,7 @@ function TaskIndex() {
     const [showTaskForm, setShowTaskForm] = useState(false)
     const [showConfirmDelete, setShowConfirmDelete] = useState(false)
     const [taskId, setTaskId] = useState(null)
-    const [taskName , setTaskName] = useState('')
+    const [taskName, setTaskName] = useState('')
 
     const priority = {
         1: 'Low',
@@ -46,7 +46,7 @@ function TaskIndex() {
             if (!dateCalender) {
                 // dateCalender = new Date().toISOString().split('T')[0]
                 // below gets the user specific date
-                dateCalender = new Date().toLocaleDateString('en-CA') 
+                dateCalender = new Date().toLocaleDateString('en-CA')
             }
             const response = await getAllTasksService(dateCalender)
             console.log(response.data)
@@ -106,8 +106,12 @@ function TaskIndex() {
 
     return (
         <div>
+            {/* For date, creditng https://www.geeksforgeeks.org/javascript/how-to-format-a-date-in-javascript/ */}
+            {date === new Date().toLocaleDateString('en-CA') ? <h1>Today tasks</h1> : <h1>
+                {new Intl.DateTimeFormat("en-US", {dateStyle: 'medium'}).format(new Date(date)).replace(',', '')}
+            </h1>}
 
-            <h1>Today tasks</h1> <button onClick={() => {
+            <button onClick={() => {
                 setShowTaskForm(true)
                 setTaskId(null)
             }}>+</button>
@@ -129,19 +133,18 @@ function TaskIndex() {
                                         <p>status: {task.status}</p>
                                         <p>priority: {priority[task.priority]}</p>
                                         <p>Date: {task.date}</p>
-                                        
+
                                         {
-                                            task.goals.length?
-                                            <p>goals:</p>:
-                                            <></>
+                                            task.goals.length ?
+                                                <p>goals:</p> :
+                                                <></>
                                         }
 
                                         {
-                                            task.goals.length?
-                                            task.goals.map((goal , index) =>
-                                                {return <p key = {index}>{goal.content}</p>} 
-                                            ):
-                                            <></>
+                                            task.goals.length ?
+                                                task.goals.map((goal, index) => { return <p key={index}>{goal.content}</p> }
+                                                ) :
+                                                <></>
                                         }
 
 
@@ -196,9 +199,9 @@ function TaskIndex() {
 
                     deleteServiceFunction={deleteTaskService}
                     elementId={taskId}
-                    setElementId={setTaskId} 
-                    text = {`the task ${taskName}`}
-                    />
+                    setElementId={setTaskId}
+                    text={`the task ${taskName}`}
+                />
 
                 {/* calenderTasks adds all tasks as events in the component
 

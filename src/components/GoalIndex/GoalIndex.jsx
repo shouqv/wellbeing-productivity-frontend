@@ -6,9 +6,12 @@ import GoalForm from '../GoalForm/GoalForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
 
 
-function GoalIndex({user}) {
+function GoalIndex({ user }) {
 
     const [goals, setGoals] = useState([])
+    const [filteredGoals, setFilteredGoals] = useState([])
+    const [filter, setFilter] = useState('active')
+
     const [showGoalForm, setShowGoalForm] = useState(false)
     const [goalId, setGoalId] = useState(null)
     const [goalName, setGoalName] = useState('')
@@ -18,9 +21,22 @@ function GoalIndex({user}) {
         try {
             const response = await getAllGoalsService()
             setGoals(response.data)
+            applyFilter(filter, response.data)
         }
         catch (error) { console.log("Error in getAllGoals", error) }
     }
+
+
+
+    function applyFilter(status, goalsList = goals) {
+        setFilter(status)
+        if (status === 'active') {
+            setFilteredGoals(goalsList.filter(g => g.status === 'active'))
+        } else if (status === 'achieved') {
+            setFilteredGoals(goalsList.filter(g => g.status === 'achieved'))
+        }
+    }
+
 
     useEffect(() => {
         getAllGoals()
@@ -34,14 +50,22 @@ function GoalIndex({user}) {
                 setShowGoalForm(true)
                 setGoalId(null)
             }}>+</button>
+
+
+            <div>
+                <button onClick={() => applyFilter('active')}>Active</button>
+                <button onClick={() => applyFilter('achieved')}>Achieved</button>
+
+            </div>
             <ul>
                 {
-                    goals.length ?
-                        goals.map((goal, index) => {
+                    filteredGoals.length ?
+                        filteredGoals.map((goal, index) => {
                             return (
                                 <li key={index}>
 
                                     <h3>{goal.content} </h3>
+                                    <p>status: {goal.status}</p>
                                     <button onClick={() => {
                                         setShowGoalForm(true)
                                         setGoalId(goal.id)
@@ -75,7 +99,7 @@ function GoalIndex({user}) {
                 showConfirmDelete={showConfirmDelete}
                 setShowConfirmDelete={setShowConfirmDelete}
 
-                getAllGoals = {getAllGoals}
+                getAllGoals={getAllGoals}
                 deleteServiceFunction={deleteSingleGoalService}
                 elementId={goalId}
                 setElementId={setGoalId}
