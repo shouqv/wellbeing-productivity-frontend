@@ -15,16 +15,20 @@ import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls'
 // and https://github.com/schedule-x/schedule-x/blob/main/packages/calendar-controls/src/calendar-controls-plugin.impl.ts
 // for the below code, and i have customized it based on my needs
 
-function Calender({ tasks , getTodayTask , setDate}) {
+function Calender({ tasks, getTodayTask, setDate }) {
     const eventsService = useState(() => createEventsServicePlugin())[0]
-    const calendarControls = useState(() => createCalendarControlsPlugin({ showToday: true, }))[0]
+    const calendarControls = useState(() => createCalendarControlsPlugin({
+        showToday: true,
+        showViewSelect: false,
+    }))[0]
 
 
     const calendar = useCalendarApp({
         // isDark: true,
         // crediting: https://stackoverflow.com/questions/1091372/getting-the-clients-time-zone-and-offset-in-javascript
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        views: [createViewDay(), createViewMonthAgenda(), createViewMonthGrid(), createViewWeek()],
+        // views: [createViewDay(), createViewMonthAgenda(), createViewMonthGrid(), createViewWeek()],
+        views: [ createViewMonthAgenda()],
         events: [],
         plugins: [eventsService, calendarControls],
         callbacks: {

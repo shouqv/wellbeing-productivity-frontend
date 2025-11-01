@@ -5,6 +5,7 @@ import GoalBarChart from "./GoalBarChart"
 import HightPriorityTasks from "./HightPriorityTasks"
 import AiAnalysis from "./AiAnalysis"
 import AchievedGoals from "./AchievedGoals"
+import CalendarMoodTracking from "./CalendarMoodTracking"
 import { authRequest } from "@/services/auth"
 
 function Dashboard() {
@@ -42,6 +43,7 @@ function Dashboard() {
       <HightPriorityTasks data={dashboardData} />
       <AiAnalysis data={dashboardData} />
       <AchievedGoals data={dashboardData} />
+      <CalendarMoodTracking data={dashboardData}/>
     </div>
   )
 }
