@@ -7,13 +7,15 @@ import EmotionForm from './components/EmotionForm/EmotionForm'
 import VisionBoard from './components/VisionBoard/VisionBoard'
 import Login from './components/Auth/Login'
 import SignUp from './components/Auth/Signup'
+import Dashboard from './components/Dashboard/Dashboard'
 
 import ProtectedRoute from './components/Auth/ProtectedRoute'
 import { getUserFromToken } from './services/auth'
+import './App.css'
 
 function App() {
   const [user, setUser] = useState(getUserFromToken());
-  
+
 
   return (
     <Router>
@@ -24,13 +26,20 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/' element={<h2>This will be welcoming page</h2>} />
 
-        <Route path='/dashboard' element={<h2>This is the dash</h2>} />
+        {/* <Route path='/dashboard' element={<Dashboard />} /> */}
         {/* <Route path='/goals' element={<GoalIndex />} />
         <Route path='/tasks' element={<TaskIndex />} />
         <Route path='/mood' element={<EmotionForm />} />
         <Route path='/visionboard' element={<VisionBoard />} /> */}
 
-
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard user={user} />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/goals"
           element={

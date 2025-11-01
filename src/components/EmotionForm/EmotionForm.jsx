@@ -10,8 +10,8 @@ function EmotionForm() {
   const [alreadySubmitted, setAlreadySubmitted] = useState(false);
   const [todaySubmittedEmotion, setTodaySubmittedEmotion] = useState(null);
 
-// TODO - remember when the user enter a new day the below code wont run becuase it wont know unless they refresh or navigate away and comde bac
-//  later on maybe link and chekc the today date if it changed to be adependency in the below 
+  // TODO - remember when the user enter a new day the below code wont run becuase it wont know unless they refresh or navigate away and comde bac
+  //  later on maybe link and chekc the today date if it changed to be adependency in the below 
   useEffect(() => {
     async function checkToday() {
       try {
@@ -28,10 +28,12 @@ function EmotionForm() {
 
   const moods = [
     { emoji: "😊", label: "happy" },
+    { emoji: "😌", label: "calm" },
+    { emoji: "😐", label: "neutral" },
     { emoji: "😢", label: "sad" },
     { emoji: "😠", label: "angry" },
     { emoji: "😰", label: "anxious" },
-    { emoji: "😌", label: "calm" },
+
   ];
 
   const handleSubmit = async (event) => {
