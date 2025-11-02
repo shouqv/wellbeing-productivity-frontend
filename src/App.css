@@ -182,7 +182,8 @@ table {
   flex: 1;
   padding: 24px;
   /* background-color: #E5E7EB; */
-  background-color: #F0F0F0;
+  /* background-color: #F0F0F0; */
+  background-color: #EDF0F2;
   overflow-y: auto;
 }
 

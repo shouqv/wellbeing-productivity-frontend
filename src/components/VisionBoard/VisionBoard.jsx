@@ -35,7 +35,7 @@ function VisionBoard() {
         fetchVisionBoard()
     }, [store])
 
-    async function handleSave()  {
+    async function handleSave() {
         setSaving(true)
         const snapshot = getSnapshot(store)
         try {
@@ -70,20 +70,36 @@ function VisionBoard() {
     }
 
     return (
-        <div className="tldraw__editor" style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '80vw',
-            height: '100vh',
-            position: 'fixed',
-            right: 0,
-            top: 0,
-        }}>
-            <Tldraw store={store} />
+
+        <div
+        className="tldraw__editor"
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '92vw',
+                height: '95vh',
+                position: 'fixed',
+            }}
+        >
+            <h1>Vision Board</h1>
+            <div
+                style={{
+                    borderRadius: '10px',
+                    overflow: 'hidden',
+                    flexGrow: 1,
+                    paddingBottom: "10px"
+                }}
+            >
+                <Tldraw store={store} />
+            </div>
+
             <button
+                className="global-btn"
                 onClick={handleSave}
                 disabled={saving}
-                style={{ marginTop: '10px', padding: '8px 16px', fontSize: '16px' }}
+                style={{
+                    marginLeft: 'auto'
+                }}
             >
                 {saving ? 'Saving...' : 'Save'}
             </button>

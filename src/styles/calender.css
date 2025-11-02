@@ -1,9 +1,11 @@
 :root {
 
-    --sx-color-background: #F0F0F0;
+    --sx-color-background: #EDF0F2;
     --sx-color-surface: #FFFFFF;
     --sx-color-primary: #000000;
-    --sx-color-primary-container: #D3D3D3;
+    /* --sx-color-primary-container: #D3D3D3; */
+    /* --sx-color-primary-container: #E3E6E8; */
+    --sx-color-primary-container: #DADDE0;
     --sx-color-primary-contrast: #FFFFFF;
     --sx-color-primary-container-contrast: #000000;
 
