@@ -3,9 +3,9 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
 import { addGoalsService, updateGoalService, getSingleGoalService } from '../../services/GoalService'
 
-
+import '../../styles/popupWindow.css'
 // TODO - pass the year from the user device
-function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalId , user}) {
+function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalId, user }) {
     const [formData, setFormData] = useState({
         content: '',
         status: 'active',
@@ -82,36 +82,40 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
 
     if (!showGoalForm) return null;
     return (
-        <div>
-            <h1>{goalId ? 'Edit Goal' : 'Add New Goal'}</h1> <button onClick={() => {
-                setShowGoalForm(false)
-                setFormData({
-                    content: '',
-                    status: 'active',
-                    year: new Date().getFullYear().toString(),
-                    // for now
-                    // user: user?.user_id
-                })
-                setGoalId(null)
-            }}>X</button>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='content'>Goal:</label>
-                    <input value={formData.content} onChange={handleChange} id='content' name='content' />
+        <div className="popup-overlay">
+            <div className="popup-content">
+                <div className="popup-header">
+                    <h1>{goalId ? 'Edit Goal' : 'Add New Goal'}</h1>
+                    <button className="popup-close-btn" onClick={() => {
+                        setShowGoalForm(false)
+                        setFormData({
+                            content: '',
+                            status: 'active',
+                            year: new Date().getFullYear().toString(),
+                            // for now
+                            // user: user?.user_id
+                        })
+                        setGoalId(null)
+                    }}>X</button>
                 </div>
-                <div>
-                    <label htmlFor='status' >Status:</label>
-                    <select id="status" name="status" value={formData.status} onChange={handleChange}>
-                        <option value="active">Active</option>
-                        <option value="achieved">Achieved</option>
-                    </select>
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor='content'>Goal:</label>
+                        <input value={formData.content} onChange={handleChange} id='content' name='content' />
+                    </div>
+                    <div>
+                        <label htmlFor='status' >Status:</label>
+                        <select id="status" name="status" value={formData.status} onChange={handleChange}>
+                            <option value="active">Active</option>
+                            <option value="achieved">Achieved</option>
+                        </select>
+                    </div>
 
-                <button type='submit'>Submit</button>
-            </form>
+                    <button className='global-btn' type='submit'>Submit</button>
+                </form>
 
 
-
+            </div>
         </div>
     )
 }

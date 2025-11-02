@@ -19,3 +19,7 @@
     transform-origin: top left !important;
     overflow: hidden !important;
 }
+
+.sx__view-container {
+    overflow: hidden !important;
+}

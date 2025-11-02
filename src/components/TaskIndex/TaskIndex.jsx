@@ -35,7 +35,7 @@ function TaskIndex() {
 
     const statusIcon = {
         'pending': '⏸️',
-        "in_progress": '▶️',
+        'in_progress': '▶️',
         'completed': '✅'
     }
 
@@ -115,10 +115,10 @@ function TaskIndex() {
 
     return (
         <div className='task-main-container'>
-            <div className='left-main-container'>
+            <div className='task-left-main-container'>
                 <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
             </div>
-            <div className='right-main-container'>
+            <div className='task-right-main-container'>
                 {/* For date, creditng https://www.geeksforgeeks.org/javascript/how-to-format-a-date-in-javascript/ */}
                 {date === new Date().toLocaleDateString('en-CA') ? <h1>Today tasks</h1> : <h1>
                     {new Intl.DateTimeFormat("en-US", { dateStyle: 'medium' }).format(new Date(date)).replace(',', '')}

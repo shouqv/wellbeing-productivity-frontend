@@ -341,6 +341,7 @@ h1 {
   transition: all 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   margin-right: 6px;
+  margin-bottom: 3px;
 }
 
 .global-btn:hover {
