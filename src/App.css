@@ -280,6 +280,12 @@ h1 {
   gap: 0.5vw;
 }
 
+
+.widget-list-item-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 0 0 0;
+}
 .widget-list-item-tags span {
   padding: 5px;
   border-radius: 3px;

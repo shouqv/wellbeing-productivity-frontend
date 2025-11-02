@@ -81,21 +81,24 @@ function GoalIndex({ user }) {
                                     <li key={index} className='widget-list-item'>
 
                                         <h3>{goal.content} </h3>
-                                        <div className='widget-list-item-tags'>
-                                            <span className={`widget-list-item-status`}>{statusIcon[goal.status]}{statusCap[goal.status]}</span>
-                                        </div>
 
-                                        <div className='widget-list-item-btns'>
-                                            <button onClick={() => {
-                                                setShowGoalForm(true)
-                                                setGoalId(goal.id)
-                                            }}><img src={editIcon} alt="edit icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                        <div className='widget-list-item-footer'>
+                                            <div className='widget-list-item-tags'>
+                                                <span className={`widget-list-item-status`}>{statusIcon[goal.status]}{statusCap[goal.status]}</span>
+                                            </div>
 
-                                            <button onClick={() => {
-                                                setShowConfirmDelete(true)
-                                                setGoalId(goal.id)
-                                                setGoalName(goal.content)
-                                            }}><img src={deleteIcon} alt="delete icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                            <div className='widget-list-item-btns'>
+                                                <button onClick={() => {
+                                                    setShowGoalForm(true)
+                                                    setGoalId(goal.id)
+                                                }}><img src={editIcon} alt="edit icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+
+                                                <button onClick={() => {
+                                                    setShowConfirmDelete(true)
+                                                    setGoalId(goal.id)
+                                                    setGoalName(goal.content)
+                                                }}><img src={deleteIcon} alt="delete icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                            </div>
                                         </div>
                                     </li>
                                 )

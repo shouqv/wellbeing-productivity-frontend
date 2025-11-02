@@ -145,10 +145,7 @@ function TaskIndex() {
                                             <li key={index} className='widget-list-item' >
 
                                                 <h3>{task.content} </h3>
-                                                <div className='widget-list-item-tags'>
-                                                    <span className={`task-${priority[task.priority]}`}>{priority[task.priority]}</span>
-                                                    <span className={`widget-list-item-status`}>{statusIcon[task.status]}{task.status}</span>
-                                                </div>
+
                                                 {/* <p>Date: {task.date}</p> */}
 
                                                 {
@@ -163,18 +160,25 @@ function TaskIndex() {
                                                         ) :
                                                         <></>
                                                 }
+                                                <div className='widget-list-item-footer'>
+                                                    <div className='widget-list-item-tags'>
+                                                        <span className={`task-${priority[task.priority]}`}>{priority[task.priority]}</span>
+                                                        <span className={`widget-list-item-status`}>{statusIcon[task.status]}{task.status}</span>
+                                                    </div>
 
-                                                <div className='widget-list-item-btns'>
-                                                    <button onClick={() => {
-                                                        setShowConfirmDelete(true)
-                                                        setTaskId(task.id)
-                                                        setTaskName(task.content)
-                                                    }}><img src={deleteIcon} alt="delete icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
-                                                    <button onClick={() => {
-                                                        setShowTaskForm(true)
-                                                        setTaskId(task.id)
-                                                    }}><img src={editIcon} alt="edit icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                                    <div className='widget-list-item-btns'>
+                                                        <button onClick={() => {
+                                                            setShowConfirmDelete(true)
+                                                            setTaskId(task.id)
+                                                            setTaskName(task.content)
+                                                        }}><img src={deleteIcon} alt="delete icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                                        <button onClick={() => {
+                                                            setShowTaskForm(true)
+                                                            setTaskId(task.id)
+                                                        }}><img src={editIcon} alt="edit icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                                    </div>
                                                 </div>
+
                                             </li>
                                         )
                                     })
