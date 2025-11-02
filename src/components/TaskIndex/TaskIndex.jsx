@@ -7,6 +7,9 @@ import TaskForm from '../TaskForm/TaskForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
 import { deleteTaskService } from '../../services/TaskService'
 
+import editIcon from '../../assets/edit.png';
+import deleteIcon from '../../assets/delete.png';
+
 
 function TaskIndex() {
 
@@ -28,6 +31,12 @@ function TaskIndex() {
         1: 'Low',
         2: 'Medium',
         3: 'High'
+    }
+
+    const statusIcon = {
+        'pending': '⏸️',
+        "in_progress": '▶️',
+        'completed': '✅'
     }
 
     async function getAllTasks() {
@@ -107,73 +116,77 @@ function TaskIndex() {
     return (
         <div className='task-main-container'>
             <div className='left-main-container'>
-            <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
+                <Calender tasks={calnderTasks} getTodayTask={getTodayTask} setDate={setDate} />
             </div>
             <div className='right-main-container'>
-            {/* For date, creditng https://www.geeksforgeeks.org/javascript/how-to-format-a-date-in-javascript/ */}
-            {date === new Date().toLocaleDateString('en-CA') ? <h1>Today tasks</h1> : <h1>
-                {new Intl.DateTimeFormat("en-US", { dateStyle: 'medium' }).format(new Date(date)).replace(',', '')}
-            </h1>}
-            <button onClick={() => {
-                setShowTaskForm(true)
-                setTaskId(null)
-            }}>+</button>
-            <div className='filter-div'>
-                <button className={`filter-selector ${filter === 'all' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('all')}>All</button>
-                <button className={`filter-selector ${filter === 'pending' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('pending')}>Pending</button>
-                <button className={`filter-selector ${filter === 'in_progress' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('in_progress')}>In Progress</button>
-                <button className={`filter-selector ${filter === 'completed' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('completed')}>Completed</button>
-            </div>
-            <div className='big-main-container'>
-                <ul className='widget-list-item-container'>
-                    {
-                        todayTasks ?
-                            filteredTasks.length ?
-                                filteredTasks.map((task, index) => {
-                                    return (
-                                        <li key={index} className='widget-list-item' >
+                {/* For date, creditng https://www.geeksforgeeks.org/javascript/how-to-format-a-date-in-javascript/ */}
+                {date === new Date().toLocaleDateString('en-CA') ? <h1>Today tasks</h1> : <h1>
+                    {new Intl.DateTimeFormat("en-US", { dateStyle: 'medium' }).format(new Date(date)).replace(',', '')}
+                </h1>}
 
-                                            <h3>{task.content} </h3>
-                                            <p>status: {task.status}</p>
-                                            <p>priority: {priority[task.priority]}</p>
-                                            <p>Date: {task.date}</p>
+                <div className='filter-div'>
+                    <button className={`filter-selector ${filter === 'all' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('all')}>All</button>
+                    <button className={`filter-selector ${filter === 'pending' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('pending')}>Pending</button>
+                    <button className={`filter-selector ${filter === 'in_progress' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('in_progress')}>In Progress</button>
+                    <button className={`filter-selector ${filter === 'completed' ? 'active' : 'unactive'}`} onClick={() => getTasksByFilter('completed')}>Completed</button>
 
-                                            {
-                                                task.goals.length ?
-                                                    <p>goals:</p> :
-                                                    <></>
-                                            }
+                    <button className='global-btn' onClick={() => {
+                        setShowTaskForm(true)
+                        setTaskId(null)
+                    }}>+</button>
+                </div>
+                <div className='big-main-container'>
+                    <ul className='widget-list-item-container'>
+                        {
+                            todayTasks ?
+                                filteredTasks.length ?
+                                    filteredTasks.map((task, index) => {
+                                        return (
+                                            <li key={index} className='widget-list-item' >
 
-                                            {
-                                                task.goals.length ?
-                                                    task.goals.map((goal, index) => { return <p key={index}>{goal.content}</p> }
-                                                    ) :
-                                                    <></>
-                                            }
+                                                <h3>{task.content} </h3>
+                                                <div className='widget-list-item-tags'>
+                                                    <span className={`task-${priority[task.priority]}`}>{priority[task.priority]}</span>
+                                                    <span className={`widget-list-item-status`}>{statusIcon[task.status]}{task.status}</span>
+                                                </div>
+                                                {/* <p>Date: {task.date}</p> */}
 
+                                                {
+                                                    task.goals.length ?
+                                                        <p>goals:</p> :
+                                                        <></>
+                                                }
 
-                                            <button onClick={() => {
-                                                setShowConfirmDelete(true)
-                                                setTaskId(task.id)
-                                                setTaskName(task.content)
-                                            }}>Delete</button>
-                                            <button onClick={() => {
-                                                setShowTaskForm(true)
-                                                setTaskId(task.id)
-                                            }}>Edit</button>
+                                                {
+                                                    task.goals.length ?
+                                                        task.goals.map((goal, index) => { return <p key={index}>{goal.content}</p> }
+                                                        ) :
+                                                        <></>
+                                                }
 
-                                        </li>
-                                    )
-                                })
+                                                <div className='widget-list-item-btns'>
+                                                    <button onClick={() => {
+                                                        setShowConfirmDelete(true)
+                                                        setTaskId(task.id)
+                                                        setTaskName(task.content)
+                                                    }}><img src={deleteIcon} alt="delete icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                                    <button onClick={() => {
+                                                        setShowTaskForm(true)
+                                                        setTaskId(task.id)
+                                                    }}><img src={editIcon} alt="edit icon" width={20} style={{ opacity: 0.5, cursor: "pointer" }} /></button>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                    :
+                                    <h2>No tasks</h2>
                                 :
-                                <h2>No tasks</h2>
-                            :
-                            <h2>No Tasks</h2>
-                    }
-                </ul>
+                                <h2>No Tasks</h2>
+                        }
+                    </ul>
 
-                <div style={{ width: '50vw' }}>
-                    {/* the below, the task form is used for both updating and creating.
+                    <div style={{ width: '50vw' }}>
+                        {/* the below, the task form is used for both updating and creating.
                 i have passed the date, so that user can navigate using the calender and if they pressed the + they can add at that date
 
                 i have passed getTodayTask and getAllTasks , so that when the user add a task, the task will render on the screen becuase
@@ -185,39 +198,39 @@ function TaskIndex() {
                 
                 lastly showTaskForm , just control if i want it to be visisble or not
                 */}
-                    <TaskForm showTaskForm={showTaskForm}
-                        setShowTaskForm={setShowTaskForm}
-                        date={date}
-                        getTodayTask={getTodayTask}
-                        getAllTasks={getAllTasks}
-                        taskId={taskId}
-                        setTaskId={setTaskId} />
+                        <TaskForm showTaskForm={showTaskForm}
+                            setShowTaskForm={setShowTaskForm}
+                            date={date}
+                            getTodayTask={getTodayTask}
+                            getAllTasks={getAllTasks}
+                            taskId={taskId}
+                            setTaskId={setTaskId} />
 
 
-                    <ConfirmDelete
-                        showConfirmDelete={showConfirmDelete}
-                        setShowConfirmDelete={setShowConfirmDelete}
-                        date={date}
-                        getTodayTask={getTodayTask}
-                        getAllTasks={getAllTasks}
+                        <ConfirmDelete
+                            showConfirmDelete={showConfirmDelete}
+                            setShowConfirmDelete={setShowConfirmDelete}
+                            date={date}
+                            getTodayTask={getTodayTask}
+                            getAllTasks={getAllTasks}
 
-                        deleteServiceFunction={deleteTaskService}
-                        elementId={taskId}
-                        setElementId={setTaskId}
-                        text={`the task ${taskName}`}
-                    />
+                            deleteServiceFunction={deleteTaskService}
+                            elementId={taskId}
+                            setElementId={setTaskId}
+                            text={`the task ${taskName}`}
+                        />
 
-                    {/* calenderTasks adds all tasks as events in the component
+                        {/* calenderTasks adds all tasks as events in the component
 
                 setDate helps sets the date to whatever date chosen in the calender component so that if you clicked the plus button it will add
                 a task to exactly the date you navigated to using the calender
                  */}
 
 
+                    </div>
+
+
                 </div>
-
-
-            </div>
             </div>
         </div>
     )

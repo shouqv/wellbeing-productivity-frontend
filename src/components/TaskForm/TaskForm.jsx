@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
 import { addTaskService, updateTaskService, getSingleTaskSercive, unLinkTaslToGoalService, linkTaslToGoalService } from '../../services/TaskService'
 import { getAllGoalsService } from '../../services/GoalService'
+import '../../styles/popupWindow.css'
 
 // {
 //  {
@@ -147,69 +148,52 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
 
     if (!showTaskForm) return null;
     return (
-        <div>
-            <h1>{taskId ? 'Edit Task' : 'Add New Task'}</h1> <button onClick={() => {
-                setShowTaskForm(false)
-                setFormData({
-                    content: '',
-                    date: date,
-                    priority: '1',
-                    status: 'pending',
-                    // user: user?.user_id
-                })
-                setTaskId(null)
-            }}>X</button>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='content'>Task:</label>
-                    <input value={formData.content} onChange={handleChange} id='content' name='content' />
+        <div className="popup-overlay" >
+
+            <div className="popup-content">
+
+                <div className="popup-header">
+                    <h1>{taskId ? 'Edit Task' : 'Add New Task'}</h1>
+
+                    <button className="popup-close-btn" onClick={() => {
+                        setShowTaskForm(false)
+                        setFormData({
+                            content: '',
+                            date: date,
+                            priority: '1',
+                            status: 'pending',
+                            // user: user?.user_id
+                        })
+                        setTaskId(null)
+                    }}>X</button>
                 </div>
 
-                <div>
-                    <label htmlFor='priority'>Priority:</label>
-                    <select id='priority' name="priority" value={formData.priority} onChange={handleChange}>
-                        <option value="1">Low</option>
-                        <option value="2">Medium</option>
-                        <option value="3">High</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor='status' >Status:</label>
-                    <select id="status" name="status" value={formData.status} onChange={handleChange}>
-                        <option value="pending">Pending</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-                {/* TODO: enhance the below code */}
-                {/* <p>linked goals:</p> */}
-                {taskId ? formData.goals_belong_to_task?.map(goal => {
-                    return <label>
-                        <input
-                            type="checkbox"
-                            checked={checkedGoals.includes(goal.id)}
-                            onChange={() => handleGoalToggle(goal.id)}
-                        />
-                        {goal.content}
-                    </label>
-                })
-                    : <></>}
-                {/* <p>unlinked goals:</p> */}
-                {formData.goals_doesnot_belong_to_task?.map(goal => {
-                    return <label>
-                        <input
-                            type="checkbox"
-                            checked={checkedGoals.includes(goal.id)}
-                            onChange={() => handleGoalToggle(goal.id)}
-                        />
-                        {goal.content}
-                    </label>
-                })}
-                <p>all goals</p>
-                {
-                    taskId ?<></>:
-                    goals.map((goal, index) => {
-                        return <label key={index}>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor='content'>Task:</label>
+                        <input value={formData.content} onChange={handleChange} id='content' name='content' />
+                    </div>
+
+                    <div>
+                        <label htmlFor='priority'>Priority:</label>
+                        <select id='priority' name="priority" value={formData.priority} onChange={handleChange}>
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor='status' >Status:</label>
+                        <select id="status" name="status" value={formData.status} onChange={handleChange}>
+                            <option value="pending">Pending</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    {/* TODO: enhance the below code */}
+                    {/* <p>linked goals:</p> */}
+                    {taskId ? formData.goals_belong_to_task?.map(goal => {
+                        return <label>
                             <input
                                 type="checkbox"
                                 checked={checkedGoals.includes(goal.id)}
@@ -218,17 +202,37 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                             {goal.content}
                         </label>
                     })
-                }
+                        : <></>}
+                    {/* <p>unlinked goals:</p> */}
+                    {formData.goals_doesnot_belong_to_task?.map(goal => {
+                        return <label>
+                            <input
+                                type="checkbox"
+                                checked={checkedGoals.includes(goal.id)}
+                                onChange={() => handleGoalToggle(goal.id)}
+                            />
+                            {goal.content}
+                        </label>
+                    })}
+                    <p>all goals</p>
+                    {
+                        taskId ? <></> :
+                            goals.map((goal, index) => {
+                                return <label key={index}>
+                                    <input
+                                        type="checkbox"
+                                        checked={checkedGoals.includes(goal.id)}
+                                        onChange={() => handleGoalToggle(goal.id)}
+                                    />
+                                    {goal.content}
+                                </label>
+                            })
+                    }
+                    <button type='submit'>Submit</button>
+                </form>
 
 
-
-
-
-                <button type='submit'>Submit</button>
-            </form>
-
-
-
+            </div>
         </div>
     )
 }

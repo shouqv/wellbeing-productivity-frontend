@@ -26,15 +26,19 @@ function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, set
 
     if (!showConfirmDelete) return null;
     return (
-        <div>
+        <div className="popup-overlay">
+            <div className="popup-content">
             <form onSubmit={handleSubmit}>
+                <div className="popup-header">
                 <h2>Are you sure you want to delete {text}?: </h2>
-                <button type="submit">Confirm</button>
-                <button type="button" onClick={() => {
+                </div>
+                <button className='global-btn' type="submit">Confirm</button>
+                <button className='global-btn' type="button" onClick={() => {
                     setElementId(null)
                     setShowConfirmDelete(false)
                 }}>Cancel</button>
             </form>
+            </div>
         </div>
     )
 }

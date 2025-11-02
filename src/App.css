@@ -157,7 +157,7 @@ table {
   overflow-y: auto;
   background-color: #f9fafb;
 } */
- 
+
 /* crediting the inspired design from: https://dribbble.com/shots/26171921-To-do-Productivity-App */
 
 .app-main-div {
@@ -220,6 +220,10 @@ h1 {
 
 }
 
+.filter-div .global-btn {
+  margin-left: auto;
+}
+
 .filter-selector {
   background-color: #FFFFFF;
   padding: 1vh 1vw;
@@ -243,7 +247,7 @@ h1 {
 }
 
 
-.widget-list-item-container{
+.widget-list-item-container {
   display: flex;
   flex-direction: column;
   row-gap: 15px;
@@ -252,31 +256,95 @@ h1 {
   /* background-color: aquamarine; */
 }
 
-.widget-list-item{
+.widget-list-item {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   border-radius: 15px;
   padding: 1vh 2vw 1vh 2vw;
-  width:50vw;
-  overflow-wrap: break-word;  
+  width: 50vw;
+  overflow-wrap: break-word;
 
   /* word-wrap: break-word;       
   white-space: normal;           */
 }
 
-.widget-list-item-container h3{
+.widget-list-item-container h3 {
   font-weight: bold;
-  padding-bottom: 1vh;
+  padding-bottom: 1.3vh;
+  font-size: 1.2em;
 }
 
 
-.task-main-container{
+
+.widget-list-item-tags {
   display: flex;
-  gap:20px;
+  gap: 0.5vw;
+}
+
+.widget-list-item-tags span {
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.widget-list-item-status {
+  background-color: #d1d1d1;
+}
+
+.task-High {
+  background: #FFD6D6;
+  color: #C62828;
 
 }
 
-.calendar-container{
+.task-Medium {
+  background: #FFE4CC;
+  color: #E65100;
+}
+
+.task-Low {
+  background: #D4F4DD;
+  color: #2E7D32;
+
+}
+
+
+
+.widget-list-item-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+
+.task-main-container {
+  display: flex;
+  gap: 20px;
+
+}
+
+.calendar-container {
   width: 100%;
   height: 800px;
   max-height: 90vh;
+}
+
+
+.global-btn {
+  background-color: #000000;
+  color: #ffffff;
+  width: 5vw;
+  padding: 6px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-right: 6px;
+}
+
+.global-btn:hover {
+  background-color: #222222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
