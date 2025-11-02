@@ -159,6 +159,7 @@ table {
 } */
 
 /* crediting the inspired design from: https://dribbble.com/shots/26171921-To-do-Productivity-App */
+/* crediting the shadow boxes: https://getcssscan.com/css-box-shadow-examples */
 
 .app-main-div {
   display: flex;
@@ -293,7 +294,7 @@ h1 {
 }
 
 .widget-list-item-status {
-  background-color: #d1d1d1;
+  background-color: #dfdfdf;
 }
 
 .task-High {

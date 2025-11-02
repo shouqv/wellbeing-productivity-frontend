@@ -9,6 +9,7 @@ import { deleteTaskService } from '../../services/TaskService'
 
 import editIcon from '../../assets/edit.png';
 import deleteIcon from '../../assets/delete.png';
+import '../../styles/TaskIndex.css'
 
 
 function TaskIndex() {
@@ -148,18 +149,24 @@ function TaskIndex() {
 
                                                 {/* <p>Date: {task.date}</p> */}
 
-                                                {
-                                                    task.goals.length ?
-                                                        <p>goals:</p> :
-                                                        <></>
-                                                }
+                                                <div className={task.goals.length ? 'linked-goals-container' : ''}>
+                                                    {
+                                                        task.goals.length ?
+                                                            <h4>Related goals:</h4> :
+                                                            <></>
+                                                    }
+                                                    {
+                                                        task.goals.length ?
+                                                            <div className='linked-goals-items'>
+                                                        {task.goals.map((goal, index) => { return <p className='linked-goals-item' key={index}>✨{goal.content}</p> })}
+                                                            </div>
+                                                            :
+                                                            <></>
+                                                    }
+                                                </div>
 
-                                                {
-                                                    task.goals.length ?
-                                                        task.goals.map((goal, index) => { return <p key={index}>{goal.content}</p> }
-                                                        ) :
-                                                        <></>
-                                                }
+
+
                                                 <div className='widget-list-item-footer'>
                                                     <div className='widget-list-item-tags'>
                                                         <span className={`task-${priority[task.priority]}`}>{priority[task.priority]}</span>
