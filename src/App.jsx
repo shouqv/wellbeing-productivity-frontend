@@ -19,7 +19,11 @@ function App() {
 
   return (
     <Router>
+      <div className='app-main-div'>
+      <div className='app-nav-bar'>
       <NavBar user={user} setUser={setUser} />
+      </div>
+      <div className='app-content'>
       <Routes>
         {/* once they login sent them to the dashboard */}
         <Route path='/login' element={<Login setUser={setUser} />} />
@@ -77,6 +81,8 @@ function App() {
 
 
       </Routes>
+      </div>
+      </div>
     </Router>
   )
 }

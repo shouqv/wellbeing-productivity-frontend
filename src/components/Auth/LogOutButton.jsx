@@ -2,6 +2,7 @@
 import React from 'react'
 import { clearTokens } from "../../services/auth"
 import { useNavigate } from 'react-router'
+import logoutIcon from '../../assets/dark_logout.png'
 
 function LogOutButton({setUser}) {
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ function LogOutButton({setUser}) {
     }
   return (
     <div>
-      <button onClick={handleLogOut}>Log Out</button>
+      <button onClick={handleLogOut}><img src={logoutIcon} alt="logout" width={24} /></button>
     </div>
   )
 }
