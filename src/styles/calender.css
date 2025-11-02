@@ -1,0 +1,21 @@
+:root {
+
+    --sx-color-background: #F0F0F0;
+    --sx-color-surface: #FFFFFF;
+    --sx-color-primary: #000000;
+    --sx-color-primary-container: #D3D3D3;
+    --sx-color-primary-contrast: #FFFFFF;
+    --sx-color-primary-container-contrast: #000000;
+
+
+    --sx-color-on-background: #000000;
+    --sx-color-outline: #00000033;
+    --sx-color-hover: #E0E0E0;
+}
+
+.sx__date-picker-popup.bottom-start {
+    position: absolute !important;
+    transform: scale(0.71) !important;
+    transform-origin: top left !important;
+    overflow: hidden !important;
+}

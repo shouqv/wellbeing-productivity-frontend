@@ -3,49 +3,139 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
+
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
+/* end of reseting css */
+
 
 
 /* .app-nav-bar {
@@ -67,43 +157,126 @@ table {
   overflow-y: auto;
   background-color: #f9fafb;
 } */
-
+ 
+/* crediting the inspired design from: https://dribbble.com/shots/26171921-To-do-Productivity-App */
 
 .app-main-div {
   display: flex;
-  height: 100vh; 
-  background-color: #E5E7EB; 
+  height: 100vh;
+  /* background-color: #E5E7EB;  */
+  background-color: #F0F0F0;
 
 }
 
 .app-nav-bar {
   width: 5vw;
   color: rgb(0, 0, 0);
-  flex-shrink: 0; 
+  flex-shrink: 0;
   overflow-y: auto;
-  background-color: #FFFFFF ;
-  border-right-color: #D1D5DB ;
-
+  background-color: #FFFFFF;
+  border-right: 1px solid #dadedf;
 }
 
 .app-content {
-  flex: 1; 
+  flex: 1;
   padding: 24px;
-  background-color: #E5E7EB;
+  /* background-color: #E5E7EB; */
+  background-color: #F0F0F0;
   overflow-y: auto;
 }
 
 h1 {
   font-size: 2em;
+  padding: 0 0 2vh 0
 }
 
-.navbar-elements{
+.navbar-elements {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:5vh;
-  padding:20vh 0;
+  gap: 5vh;
+  padding: 20vh 0 3vh 0;
   height: 100vh;
 }
 
+.navbar-elements> :last-child {
+  margin-top: auto;
+}
 
+
+
+/* this is the big container that contains the main element */
+.big-main-container {
+  background-color: #FFFFFF;
+  border-radius: 0 15px 15px 15px;
+  padding: 5vh 2vw 5vh 2vw;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  min-height: 80vh;
+}
+
+
+.filter-div {
+  display: flex;
+
+}
+
+.filter-selector {
+  background-color: #FFFFFF;
+  padding: 1vh 1vw;
+  border-radius: 3px 15px 0px 0px;
+  transition: background-color 0.2s, color 0.2s;
+  width: 110px;
+  cursor: pointer;
+
+}
+
+
+.filter-selector.active {
+  background-color: #fff;
+  color: black;
+  /* font-weight: 600; */
+}
+
+.filter-selector.unactive {
+  background-color: #f7f7f7;
+  color: #797979;
+}
+
+
+.widget-list-item-container{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aquamarine; */
+}
+
+.widget-list-item{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  border-radius: 15px;
+  padding: 1vh 2vw 1vh 2vw;
+  width:50vw;
+  overflow-wrap: break-word;  
+
+  /* word-wrap: break-word;       
+  white-space: normal;           */
+}
+
+.widget-list-item-container h3{
+  font-weight: bold;
+  padding-bottom: 1vh;
+}
+
+
+.task-main-container{
+  display: flex;
+  gap:20px;
+
+}
+
+.calendar-container{
+  width: 100%;
+  height: 800px;
+  max-height: 90vh;
+}

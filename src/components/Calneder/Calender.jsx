@@ -10,6 +10,7 @@ import { createEventsServicePlugin } from '@schedule-x/events-service'
 import 'temporal-polyfill/global'
 import '@schedule-x/theme-default/dist/index.css'
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls'
+import '../../styles/calender.css'
 
 // crediting the source: https://schedule-x.dev/docs/frameworks/react
 // and https://github.com/schedule-x/schedule-x/blob/main/packages/calendar-controls/src/calendar-controls-plugin.impl.ts
@@ -28,7 +29,7 @@ function Calender({ tasks, getTodayTask, setDate }) {
         // crediting: https://stackoverflow.com/questions/1091372/getting-the-clients-time-zone-and-offset-in-javascript
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         // views: [createViewDay(), createViewMonthAgenda(), createViewMonthGrid(), createViewWeek()],
-        views: [ createViewMonthAgenda()],
+        views: [createViewMonthAgenda()],
         events: [],
         plugins: [eventsService, calendarControls],
         callbacks: {
@@ -38,7 +39,7 @@ function Calender({ tasks, getTodayTask, setDate }) {
                 setDate(date.toString())
                 getTodayTask(date.toString())
             }
-        }
+        },
     })
 
     useEffect(() => {
@@ -56,9 +57,9 @@ function Calender({ tasks, getTodayTask, setDate }) {
     }, [tasks, eventsService]);
 
     return (
-        <>
+        <div className="calendar-container">
             <ScheduleXCalendar calendarApp={calendar} />
-        </>
+        </div>
     )
 }
 

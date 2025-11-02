@@ -51,18 +51,19 @@ function GoalIndex({ user }) {
                 setGoalId(null)
             }}>+</button>
 
-
-            <div>
-                <button onClick={() => applyFilter('active')}>Active</button>
-                <button onClick={() => applyFilter('achieved')}>Achieved</button>
-
+            
+            <div className='filter-div'>
+                <button className={`filter-selector ${filter === 'active' ? 'active' : 'unactive'}`} onClick={() => applyFilter('active')}>Active</button>
+                <button className={`filter-selector ${filter === 'achieved' ? 'active' : 'unactive'}`} onClick={() => applyFilter('achieved')}>Achieved</button>
             </div>
-            <ul>
+
+            <div className='big-main-container'>
+            <ul className='widget-list-item-container'>
                 {
                     filteredGoals.length ?
                         filteredGoals.map((goal, index) => {
                             return (
-                                <li key={index}>
+                                <li key={index} className='widget-list-item'>
 
                                     <h3>{goal.content} </h3>
                                     <p>status: {goal.status}</p>
@@ -105,6 +106,7 @@ function GoalIndex({ user }) {
                 setElementId={setGoalId}
                 text={`the goal ${goalName}`}
             />
+        </div>
         </div>
     )
 }
