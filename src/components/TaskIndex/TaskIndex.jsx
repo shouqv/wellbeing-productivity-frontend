@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
-import { getAllTasksService } from '../../services/TaskService'
+import { getAllTasksService, updateTaskService } from '../../services/TaskService'
 import Calender from '../Calneder/Calender'
 import TaskForm from '../TaskForm/TaskForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'
@@ -27,6 +27,9 @@ function TaskIndex() {
     const [showConfirmDelete, setShowConfirmDelete] = useState(false)
     const [taskId, setTaskId] = useState(null)
     const [taskName, setTaskName] = useState('')
+
+
+    // const [completedTask, setCompletedTask] = useState(false)
 
     const priority = {
         1: 'Low',
@@ -107,12 +110,28 @@ function TaskIndex() {
                 setFilteredTasks([
                     ...todayTasks.pending_tasks,
                     ...todayTasks.in_progress_tasks,
-                    ...todayTasks.completed_tasks
+                    // ...todayTasks.completed_tasks
                 ].sort((a, b) => b.priority - a.priority))
         }
     };
 
+    async function handleToggleTask(taskPassed) {
+        if (taskPassed.status === "completed") return 
 
+        const response = await updateTaskService({
+            content: taskPassed.content,
+            date: taskPassed.date,
+            priority: Number(taskPassed.priority),
+            status: 'completed'
+        }, taskPassed.id)
+
+        if (response.status === 201 || response.status === 200) {
+            getAllTasks()
+            getTodayTask(taskPassed.date)
+        }
+
+
+    }
 
     return (
         <div className='task-main-container'>
@@ -145,7 +164,16 @@ function TaskIndex() {
                                         return (
                                             <li key={index} className='widget-list-item' >
 
-                                                <h3>{task.content} </h3>
+                                                <h3 className={task.status === 'completed' ? 'completed-task-style' : ''}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={task.status === 'completed' ? true : false}
+                                                        onChange={(e) => {
+                                                            handleToggleTask(task)
+
+                                                        }}
+                                                    />
+                                                    {task.content} </h3>
 
                                                 {/* <p>Date: {task.date}</p> */}
 
@@ -158,7 +186,7 @@ function TaskIndex() {
                                                     {
                                                         task.goals.length ?
                                                             <div className='linked-goals-items'>
-                                                        {task.goals.map((goal, index) => { return <p className='linked-goals-item' key={index}>✨{goal.content}</p> })}
+                                                                {task.goals.map((goal, index) => { return <p className='linked-goals-item' key={index}>✨{goal.content}</p> })}
                                                             </div>
                                                             :
                                                             <></>

@@ -37,12 +37,12 @@
 }
 
 .links a {
-    background-color: blueviolet;
+    background-color: rgb(233, 233, 233);
     padding:10px;
     min-width: 60px;
     text-align: center;
     border-radius: 10px;
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-size: 0.8em;
      transition: all 0.3s ease;
      margin-top: 1px;
@@ -50,8 +50,8 @@
 }
 
 .links a:hover {
-    transform: translateY(-5px); /* move up a bit */
-    background-color: #9a5cfb; /* lighter purple */
+    transform: translateY(-5px); 
+    background-color: #ffffff; 
 }
 .background{
   position: fixed;
@@ -60,7 +60,8 @@
   height: 90vh;
   width: 60vw;
   object-fit: cover;
-  filter: brightness(0.8);
+  
+  /* filter: brightness(0.8); */
 }
 
 .fade-in {
@@ -80,20 +81,21 @@
 
 .fade-in-img {
   opacity: 0;
-  animation: fadeInImage 2s ease forwards, floatUpDown 6s ease-in-out infinite;
+  animation: fadeInImage 2s ease forwards;
+  /* animation: fadeInImage 2s ease forwards, floatUpDown 6s ease-in-out infinite; */
 }
 
 @keyframes fadeInImage {
   to {
-    opacity: 0.9;
+    opacity: 1;
   }
 }
 
-@keyframes floatUpDown {
+/* @keyframes floatUpDown {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-10px);
   }
-}
+} */

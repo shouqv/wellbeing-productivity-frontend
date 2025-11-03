@@ -26,3 +26,8 @@
     padding: 5px 0;
     color: #636363;
 }
+
+.completed-task-style{
+    text-decoration: line-through;
+    color: #636363;
+}
