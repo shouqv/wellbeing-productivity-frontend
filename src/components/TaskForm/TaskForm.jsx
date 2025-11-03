@@ -190,45 +190,48 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                             <option value="completed">Completed</option>
                         </select>
                     </div>
-                    {/* TODO: enhance the below code */}
-                    {/* <p>linked goals:</p> */}
-                    {taskId ? formData.goals_belong_to_task?.map(goal => {
-                        return <label>
-                            <input
-                                type="checkbox"
-                                checked={checkedGoals.includes(goal.id)}
-                                onChange={() => handleGoalToggle(goal.id)}
-                            />
-                            {goal.content}
-                        </label>
-                    })
-                        : <></>}
-                    {/* <p>unlinked goals:</p> */}
-                    {formData.goals_doesnot_belong_to_task?.map(goal => {
-                        return <label>
-                            <input
-                                type="checkbox"
-                                checked={checkedGoals.includes(goal.id)}
-                                onChange={() => handleGoalToggle(goal.id)}
-                            />
-                            {goal.content}
-                        </label>
-                    })}
-                    <p>all goals</p>
-                    {
-                        taskId ? <></> :
-                            goals.map((goal, index) => {
-                                return <label key={index}>
-                                    <input
-                                        type="checkbox"
-                                        checked={checkedGoals.includes(goal.id)}
-                                        onChange={() => handleGoalToggle(goal.id)}
-                                    />
-                                    {goal.content}
-                                </label>
-                            })
-                    }
-                    <button type='submit'>Submit</button>
+
+                    {goals ? <h4>Available goals:</h4> : <></>}
+                    <div className={goals ? 'linked-goals-container' : ''}>
+                        <div className='linked-goals-items'>
+                        {taskId ? formData.goals_belong_to_task?.map(goal => {
+                            return <label>
+                                <input
+                                    type="checkbox"
+                                    checked={checkedGoals.includes(goal.id)}
+                                    onChange={() => handleGoalToggle(goal.id)}
+                                />
+                                {goal.content}
+                            </label>
+                        })
+                            : <></>}
+                        {/* <p>unlinked goals:</p> */}
+                        {formData.goals_doesnot_belong_to_task?.map((goal, index) => {
+                            return <label key={index}>
+                                <input
+                                    type="checkbox"
+                                    checked={checkedGoals.includes(goal.id)}
+                                    onChange={() => handleGoalToggle(goal.id)}
+                                />
+                                {goal.content}
+                            </label>
+                        })}
+                        {
+                            taskId ? <></> :
+                                goals.map((goal, index) => {
+                                    return <label className='linked-goals-item' key={index}>
+                                        <input
+                                            type="checkbox"
+                                            checked={checkedGoals.includes(goal.id)}
+                                            onChange={() => handleGoalToggle(goal.id)}
+                                        />
+                                        {goal.content}
+                                    </label>
+                                })
+                        }
+                    </div>
+                    </div>
+                    <button className='global-btn' type='submit'>Submit</button>
                 </form>
 
 

@@ -288,6 +288,7 @@ h1 {
   justify-content: space-between;
   padding: 1vh 0 0 0;
 }
+
 .widget-list-item-tags span {
   padding: 5px;
   border-radius: 3px;
@@ -356,4 +357,35 @@ h1 {
   background-color: #222222;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+form label {
+  padding-right: 5px;
+}
+
+form select,
+form input {
+  border-radius: 6px;
+  box-shadow: rgba(50, 50, 93, 0.01) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.05) 0px 18px 36px -18px inset;
+  background-color: #f8f8f8;
+  padding-left: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+input[type="checkbox"] {
+  accent-color: black;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+form > :last-child {
+  margin-left:auto;
 }

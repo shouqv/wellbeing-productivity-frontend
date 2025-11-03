@@ -1,15 +1,14 @@
-
 .popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .popup-content {
@@ -20,8 +19,8 @@
   width: 90%;
   max-height: 90vh;
   /* overflow-y: auto; */
-  overflow-wrap: break-word; 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  overflow-wrap: break-word;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .popup-header {
@@ -32,8 +31,17 @@
 }
 
 .popup-close-btn {
-  background: none;
+  width: 32px;
+  height: 32px;
+  color: rgb(0, 0, 0);
   border: none;
-  font-size: 1.2rem;
+  border-radius: 8px;
+  font-size: 18px;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* add transform */
+  margin-right: 6px;
+}
+
+.popup-close-btn:hover {
+  transform: scale(1.3); /* makes text slightly bigger */
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, setElementId, deleteServiceFunction, getAllTasks, getTodayTask, date, getAllGoals , text }) {
+function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, setElementId, deleteServiceFunction, getAllTasks, getTodayTask, date, getAllGoals, text }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -11,7 +11,7 @@ function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, set
                 getAllTasks()
                 getTodayTask(date)
             }
-            else if (getAllGoals){
+            else if (getAllGoals) {
                 getAllGoals()
             }
         }
@@ -28,16 +28,18 @@ function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, set
     return (
         <div className="popup-overlay">
             <div className="popup-content">
-            <form onSubmit={handleSubmit}>
-                <div className="popup-header">
-                <h2>Are you sure you want to delete {text}?: </h2>
-                </div>
-                <button className='global-btn' type="submit">Confirm</button>
-                <button className='global-btn' type="button" onClick={() => {
-                    setElementId(null)
-                    setShowConfirmDelete(false)
-                }}>Cancel</button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <div className="popup-header">
+                        <h2>Are you sure you want to delete {text}?: </h2>
+                    </div>
+                    <div>
+                        <button className='global-btn' type="submit">Confirm</button>
+                        <button className='global-btn' type="button" onClick={() => {
+                            setElementId(null)
+                            setShowConfirmDelete(false)
+                        }}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     )
