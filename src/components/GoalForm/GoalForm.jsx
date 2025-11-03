@@ -98,7 +98,7 @@ function GoalForm({ showGoalForm, setShowGoalForm, getAllGoals, goalId, setGoalI
                         setGoalId(null)
                     }}>X</button>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form className='generic-form' onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor='content'>Goal:</label>
                         <input value={formData.content} onChange={handleChange} id='content' name='content' />

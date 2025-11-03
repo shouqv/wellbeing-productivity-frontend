@@ -21,7 +21,7 @@ export default function SignUp() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='generic-form' onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
       <input placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
       <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} />

@@ -28,7 +28,7 @@ function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, set
     return (
         <div className="popup-overlay">
             <div className="popup-content">
-                <form onSubmit={handleSubmit}>
+                <form className='generic-form' onSubmit={handleSubmit}>
                     <div className="popup-header">
                         <h2>Are you sure you want to delete {text}?: </h2>
                     </div>

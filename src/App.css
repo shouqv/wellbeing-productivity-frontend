@@ -386,6 +386,6 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-form > :last-child {
+.generic-form > :last-child {
   margin-left:auto;
 }

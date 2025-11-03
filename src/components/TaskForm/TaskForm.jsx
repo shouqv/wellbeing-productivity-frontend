@@ -168,7 +168,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                     }}>X</button>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form className='generic-form' onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor='content'>Task:</label>
                         <input value={formData.content} onChange={handleChange} id='content' name='content' />
