@@ -8,6 +8,8 @@ import AchievedGoals from "./AchievedGoals"
 import CalendarMoodTracking from "./CalendarMoodTracking"
 import { authRequest } from "@/services/auth"
 
+import '../../styles/Dashboard.css'
+
 function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -36,7 +38,7 @@ function Dashboard() {
   if (error) return <p>Error loading dashboard data</p>
 
   return (
-    <div>
+    <div className="dashboard-larg-panel">
       <EmojiPieChart data={dashboardData} />
       <ProgressBar data={dashboardData} />
       <GoalBarChart data={dashboardData} />

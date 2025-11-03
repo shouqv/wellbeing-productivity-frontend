@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 
 // creditng https://ui.shadcn.com/charts/pie
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CFE", "#FF6699"];
+const COLORS = ["#1c1c1c","#3c3c3c", "#5a5a5a", "#7a7a7a", "#9b9b9b", "#bfbfbf", "#dcdcdc"];
 
 export default function EmojiPieChart({ data }) {
     // const [data, setData] = useState([]);
@@ -51,14 +51,14 @@ export default function EmojiPieChart({ data }) {
     if (chartData.length === 0) return <p>Loading chart...</p>;
 
     return (
-        <Card className="flex flex-col border-0">
-            <CardHeader className="items-center pb-0">
-                <CardTitle>Month's Mood</CardTitle>
-                <CardDescription> write here the most used emoj/mood</CardDescription>
+        <Card className="w-[450px] bg-white/50 shadow-md rounded-lg p-4 flex flex-col border-0">
+            <CardHeader className="items-center">
+                <h2  className="dashboard-widget-title">Month's Mood</h2>
+                <p className="dashboard-widget-desc">Your most frequent moods this month</p>
             </CardHeader>
-            <CardContent className="flex-1 pb-0">
-                <div style={{ width: 300, height: 300, margin: "0 auto" }}>
-                    <PieChart width={300} height={300}>
+            <CardContent className="flex justify-center items-center pb-4">
+                <div style={{ width: 400, height: 300, margin: "auto" }}>
+                    <PieChart width={400} height={300}>
                         <Pie
                             data={chartData}
                             dataKey="value"
