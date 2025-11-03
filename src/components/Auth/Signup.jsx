@@ -21,6 +21,8 @@ export default function SignUp() {
   }
 
   return (
+    <div className='big-homepage-full-container'>
+       <div className='user-auth-page'>
     <form className='generic-form' onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
       <input placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
@@ -28,5 +30,7 @@ export default function SignUp() {
       <input type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
       <button className='global-btn' type='submit'>Sign Up</button>
     </form>
+    </div>
+    </div>
   )
 }

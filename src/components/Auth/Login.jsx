@@ -23,7 +23,7 @@ export default function Login({ setUser }) {
   }
 
   return (
-    <div className='homepage-full-container'>
+    <div className='big-homepage-full-container'>
     <div className='user-auth-page'>
     <form className="generic-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
