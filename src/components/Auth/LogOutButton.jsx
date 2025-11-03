@@ -9,7 +9,7 @@ function LogOutButton({setUser}) {
     function handleLogOut(){
         clearTokens()
         setUser(null)
-        navigate('/login')
+        navigate('/')
     }
   return (
     <div>

@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router'
 import LogOutButton from '../Auth/LogOutButton'
 
-import dashboard from '../../assets/dark_dashboard.png';
-import visionboard from '../../assets/dark_vision.png';
-import goals from '../../assets/dark_goals.png';
-import tasks from '../../assets/dark_tasks.png';
-import checkin from '../../assets/dark_checkin.png';
+import dashboard from '../../assets/dark_dashboard.png'
+import visionboard from '../../assets/dark_vision.png'
+import goals from '../../assets/dark_goals.png'
+import tasks from '../../assets/dark_tasks.png'
+import checkin from '../../assets/dark_checkin.png'
 
 function NavBar({ user, setUser }) {
   return (
@@ -16,12 +16,6 @@ function NavBar({ user, setUser }) {
         user
           ?
           <>
-            {/* <LogOutButton setUser={setUser} />
-            <Link to={'/dashboard'}>Dashboard</Link>
-            <Link to={'/visionboard'}>Vision</Link>
-            <Link to={'/goals'}>Goals</Link>
-            <Link to={'/tasks'}>Tasks</Link>
-            <Link to={'/mood'}>How you feeling?</Link> */}
 
             <div className='navbar-elements'>
             <Link to={'/dashboard'}><img src={dashboard} alt="Dashboard" width={24} /></Link>
@@ -38,8 +32,8 @@ function NavBar({ user, setUser }) {
 
           :
           <>
-            <Link to={'/signup'}>Sign Up</Link>
-            <Link to={'/login'}>Log In</Link>
+            {/* <Link to={'/signup'}>Sign Up</Link>
+            <Link to={'/login'}>Log In</Link> */}
           </>
       }
 

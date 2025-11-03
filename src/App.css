@@ -377,7 +377,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  
+
 }
 
 input[type="checkbox"] {
@@ -386,6 +386,20 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.generic-form > :last-child {
-  margin-left:auto;
+.generic-form> :last-child {
+  margin-left: auto;
+}
+
+
+.user-auth-page {
+  background-color: #FFFFFF;
+  min-width:fit-content;
+  max-width:30vw;
+  justify-self: center;
+  align-self: center;
+  border-radius: 20px;
+  padding: 5vh 2vw 5vh 2vw;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  min-height: 30vh;
+  color:#000000
 }

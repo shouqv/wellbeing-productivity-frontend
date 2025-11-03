@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import axios from "axios"
 import { saveTokens, getUserFromToken } from "../../services/auth"
 import { useNavigate } from "react-router"
+import '../../styles/HomePage.css'
 
 export default function Login({ setUser }) {
   const [username, setUsername] = useState("")
@@ -22,11 +23,15 @@ export default function Login({ setUser }) {
   }
 
   return (
+    <div className='homepage-full-container'>
+    <div className='user-auth-page'>
     <form className="generic-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
       <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
       <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
       <button className='global-btn' type="submit">Login</button>
     </form>
+    </div>
+    </div>
   )
 }

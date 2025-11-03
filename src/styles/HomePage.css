@@ -1,0 +1,57 @@
+.homepage-full-container{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+   justify-content: center; 
+   background-color: #0b0b0b;
+}
+
+.big-homepage-full-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 50vw;
+    margin-top: 5%;
+        z-index: 100;
+        color: whitesmoke;
+}
+
+.title{
+    font-size: 8em;
+    padding:40px 0 20px 0;
+}
+
+.desc{
+    font-size: 1.4em;
+    font-weight: 100;
+}
+
+.big-homepage-full-container> :last-child{
+    margin-left: auto;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.links a {
+    background-color: blueviolet;
+    padding:10px;
+    min-width: 60px;
+    text-align: center;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-size: 0.8em;
+     transition: all 0.3s ease;
+     margin-top: 1px;
+    
+}
+
+.links a:hover {
+    transform: translateY(-5px); /* move up a bit */
+    background-color: #9a5cfb; /* lighter purple */
+}
+.background{
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    height: 90vh;
+}
