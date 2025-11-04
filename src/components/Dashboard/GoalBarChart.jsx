@@ -18,12 +18,7 @@ import {
     ChartTooltipContent,
 } from "@/components/ui/chart"
 
-// const chartConfig = {
-//     completed: {
-//         label: "Completed Tasks",
-//         color: "var(--chart-1)",
-//     },
-// }
+
 
 
 const chartConfig = {
@@ -33,39 +28,10 @@ const chartConfig = {
 
 // crediting https://ui.shadcn.com/charts/bar#charts
 export function GoalBarChart({ data }) {
-    // const [chartData, setChartData] = useState([])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await authRequest({
-    //                 method: "get",
-    //                 url: "http://127.0.0.1:8000/api/dashboard/",
-    //             })
-
-    //             const goalsInfo = response.data.goals_info || []
-
-
-    //             console.log(goalsInfo)
-
-    //             const formattedData = goalsInfo.map((goal, index) => ({
-    //                 label: `Goal ${index + 1}`,
-    //                 goal: goal.goal_content, // first line
-    //                 completed: goal.completed_linked_tasks_count, // second line
-    //             }))
-
-    //             setChartData(formattedData)
-    //         } catch (error) {
-    //             console.error("error fetching chart data", error)
-    //         }
-    //     }
-
-    //     fetchData()
-    // }, [])
+    
 
     const goalsInfo = data?.goals_info || []
 
-    // Format data for chart
     const chartData = goalsInfo.map((goal, index) => ({
         label: `Goal ${index + 1}`,
         goal: goal.goal_content,
@@ -75,11 +41,11 @@ export function GoalBarChart({ data }) {
 
 
     return (
-        <Card className="w-full">
-            <CardHeader >
-                <CardTitle>Goals Progress</CardTitle>
-                <CardDescription>
-                    Number of completed tasks per goal
+        <Card className="max-w-[500px] bg-white/50 shadow-md rounded-lg ">
+            <CardHeader  >
+                <CardTitle className='dashboard-widget-title'>Goals Progress</CardTitle>
+                <CardDescription className='dashboard-widget-desc'>
+                    Number of completed tasks per goal✨
                 </CardDescription>
             </CardHeader>
 
@@ -108,7 +74,7 @@ export function GoalBarChart({ data }) {
                                     if (!props.active || !props.payload?.length) return null;
                                     const data = props.payload[0].payload;
                                     return (
-                                        <div className="p-2 border rounded shadow-sm">
+                                        <div className="p-2 border rounded shadow-sm bg-white/80">
                                             <div><strong>Goal: </strong>{data.goal}</div>
                                             <div><strong>Completed: </strong>{data.completed}</div>
                                         </div>
@@ -117,7 +83,7 @@ export function GoalBarChart({ data }) {
                             />
                             <Bar
                                 dataKey="completed"
-                                fill="var(--chart-1)"
+                                fill="#000000"
                                 radius={6}
                                 barSize={40}
                             />
@@ -126,10 +92,10 @@ export function GoalBarChart({ data }) {
                 </div>
             </CardContent>
 
-            <CardFooter className="flex-col items-start gap-2 text-sm">
-                <div className="text-muted-foreground leading-none">
+            <CardFooter className="dashboard-widget-footer">
+
                     Hover to see full goal details
-                </div>
+
             </CardFooter>
         </Card>
     )

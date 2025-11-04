@@ -10,42 +10,23 @@ import {
 } from "@/components/ui/card"
 
 function HightPriorityTasks({data}) {
-    // const [hightPriorityTasks, setHightPriorityTasks] = useState([])
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         try {
-    //             const response = await authRequest({
-    //                 method: "get",
-    //                 url: "http://127.0.0.1:8000/api/dashboard/",
-    //             })
-
-    //             const allHPTasks = response.data.high_priority_tasks
-    //             setHightPriorityTasks(allHPTasks)
-    //             console.log(response.data)
-
-    //         } catch (error) {
-    //             console.error("error fetching progress data:", error)
-    //         }
-    //     }
-
-    //     fetchData()
-    // }, [])
     const hightPriorityTasks = data?.high_priority_tasks || []
 
     return (
-        <Card className="border-0 bg-blue-900 " >
+        <Card className="border-0 bg-white/50 shadow-md rounded-lg p-4 w-[300px] h-[180px]" >
             <CardHeader>
-                <CardTitle>Today's High Priotiy Tasks</CardTitle>
+                <CardTitle className="dashboard-widget-title">Today's High Priotiy Tasks</CardTitle>
             </CardHeader>
             <CardContent>
                 {hightPriorityTasks?.length
-                    ? <><div className="max-h-[500px] overflow-y-auto rounded p-2">
-                        <div style={{ height: "150px" }}>
+                    ? <><div className="linked-goals-container max-h-[500px] overflow-y-auto rounded  p-2">
+                        <div className='linked-goals-items' style={{ height: "150px"}}>
                             {
                                 hightPriorityTasks.map((HPTask, index) => {
                                     return (
-                                        <div key={index} className={HPTask.status === 'completed' ? "text-gray-500 bg-gray-700 line-through p-2 mb-2 rounded" : "text-gray-300 p-2 mb-2 rounded bg-gray-800"}>
+                                        <div key={index} className={`linked-goals-item ${HPTask.status === 'completed' ? "completed-task-style" : ""}`}>
+                
                                             {HPTask.content}
                                         </div>
                                     )
@@ -53,7 +34,7 @@ function HightPriorityTasks({data}) {
                             }
                         </div>
                     </div></>
-                    : <p>No high priority today 😮‍💨</p>}
+                    : <p className="dashboard-widget-desc">No high priority today 😮‍💨</p>}
 
                 <CardFooter>
 

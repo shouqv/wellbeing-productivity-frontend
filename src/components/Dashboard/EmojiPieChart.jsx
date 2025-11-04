@@ -51,10 +51,10 @@ export default function EmojiPieChart({ data }) {
     if (chartData.length === 0) return <p>Loading chart...</p>;
 
     return (
-        <Card className="w-[450px] bg-white/50 shadow-md rounded-lg p-4 flex flex-col border-0">
-            <CardHeader className="items-center">
-                <h2  className="dashboard-widget-title">Month's Mood</h2>
-                <p className="dashboard-widget-desc">Your most frequent moods this month</p>
+        <Card className="w-[400px] bg-white/50 shadow-md rounded-lg flex flex-col border-0">
+            <CardHeader className="items-center pb-0">
+                <CardTitle  className="dashboard-widget-title">Month's Mood</CardTitle>
+                <CardDescription className="dashboard-widget-desc">Your most frequent moods this month</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center items-center pb-4">
                 <div style={{ width: 400, height: 300, margin: "auto" }}>

@@ -39,13 +39,29 @@ function Dashboard() {
 
   return (
     <div className="dashboard-larg-panel">
-      <EmojiPieChart data={dashboardData} />
-      <ProgressBar data={dashboardData} />
-      <GoalBarChart data={dashboardData} />
-      <HightPriorityTasks data={dashboardData} />
-      <AiAnalysis data={dashboardData} />
-      <AchievedGoals data={dashboardData} />
-      <CalendarMoodTracking data={dashboardData}/>
+      <div className="dashboard-inner-panel">
+
+
+        <div className="dashboard-first-line">
+          <EmojiPieChart data={dashboardData} />
+          <div className="dashboard-PBandHP-widget">
+            <ProgressBar data={dashboardData} />
+            <HightPriorityTasks data={dashboardData} />
+          </div>
+          <div className="dashboard-calender-widget w-[400px] h-[369px]  shadow-md rounded-lg">
+            <CalendarMoodTracking data={dashboardData} />
+          </div>
+        </div>
+
+
+        <div className="dashboard-sec-line">
+          <GoalBarChart data={dashboardData} />
+
+          <AiAnalysis data={dashboardData} />
+          <AchievedGoals data={dashboardData} />
+        </div>
+
+      </div>
     </div>
   )
 }
