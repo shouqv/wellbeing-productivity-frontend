@@ -21,7 +21,7 @@ export default function EmojiPieChart({ data }) {
         name: emoji,
         value: emojiCounts[emoji],
     }))
- 
+
 
     return (
         <Card className="w-[400px] bg-white/50 shadow-md rounded-lg flex flex-col border-0">
@@ -30,40 +30,40 @@ export default function EmojiPieChart({ data }) {
                 <CardDescription className="dashboard-widget-desc">Your most frequent moods this month</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center items-center pb-4">
-                {chartData.length === 0 ? <div  style={{
+                {chartData.length === 0 ? <div style={{
                     backgroundColor: "#dfdfdf",
-                    marginTop:"20px",
-                    pading:'30px',
+                    marginTop: "20px",
+                    pading: '30px',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent:"center",
-                    alignItems:"center",
+                    justifyContent: "center",
+                    alignItems: "center",
                     borderRadius: '0.5rem',
 
 
                 }} >
-                    <p style={{padding:'20px 20px 10px 20px',}}>No emotions entries yet</p>
-                    <img src={noDataIcon} width={50}/>
+                    <p style={{ padding: '20px 20px 10px 20px', }}>No emotions entries yet</p>
+                    <img src={noDataIcon} width={50} />
                 </div>
 
-                : <div style={{ width: 400, height: 300, margin: "auto" }}>
-                    <PieChart width={400} height={300}>
-                        <Pie
-                            data={chartData}
-                            dataKey="value"
-                            nameKey="name"
-                            cx="50%"
-                            cy="50%"
-                            outerRadius={120}
-                            label={({ name }) => name}
-                        >
-                            {chartData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                            ))}
-                        </Pie>
-                        <Tooltip formatter={(value) => `${value} times`} />
-                    </PieChart>
-                </div>
+                    : <div style={{ width: 400, height: 300, margin: "auto" }}>
+                        <PieChart width={400} height={300}>
+                            <Pie
+                                data={chartData}
+                                dataKey="value"
+                                nameKey="name"
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={120}
+                                label={({ name }) => name}
+                            >
+                                {chartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                                ))}
+                            </Pie>
+                            <Tooltip formatter={(value) => `${value} times`} />
+                        </PieChart>
+                    </div>
                 }
 
 

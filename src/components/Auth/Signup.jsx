@@ -1,9 +1,9 @@
-// crediting https://git.generalassemb.ly/SDA-SEB-02-V/DRF-example/blob/main/cat-collector-frontend/src/components/Auth/Signup.jsx
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import '../../styles/PasswordStrength.css'
 
+// crediting https://git.generalassemb.ly/SDA-SEB-02-V/DRF-example/blob/main/cat-collector-frontend/src/components/Auth/Signup.jsx
 
 export default function SignUp() {
   const [username, setUsername] = useState('')

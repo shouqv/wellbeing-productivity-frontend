@@ -4,7 +4,6 @@ import { authRequest } from '../../services/auth'
 import 'tldraw/tldraw.css'
 
 // crediting https://tldraw.dev/examples/local-storage
-// REMEMBER - delte lodash package as i no longer need it here
 function VisionBoard() {
     const store = useMemo(() => createTLStore(), [])
     const [loadingState, setLoadingState] = useState({ status: 'loading' })

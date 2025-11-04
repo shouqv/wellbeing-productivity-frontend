@@ -45,17 +45,15 @@ function NavBar({ user, setUser }) {
             
             <Link to={'/mood'} onClick={()=> setActiveNav('checkin')} className={activeNav === 'checkin'? 'activeNavBar' : ''}>
             <img src={activeNav === 'checkin'? checkinActive : checkin}  alt="checkin" width={26}  /></Link>
-             
+            
             <LogOutButton setUser={setUser} />
             </div>
-           
+          
 
           </>
 
           :
           <>
-            {/* <Link to={'/signup'}>Sign Up</Link>
-            <Link to={'/login'}>Log In</Link> */}
           </>
       }
 

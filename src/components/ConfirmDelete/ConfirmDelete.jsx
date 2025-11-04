@@ -2,6 +2,7 @@ import React from 'react'
 
 function ConfirmDelete({ showConfirmDelete, setShowConfirmDelete, elementId, setElementId, deleteServiceFunction, getAllTasks, getTodayTask, date, getAllGoals, text }) {
 
+// this component is used for both deleting goals and tasks
     async function handleSubmit(event) {
         event.preventDefault()
         let response = {}

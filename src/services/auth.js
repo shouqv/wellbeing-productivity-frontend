@@ -1,6 +1,6 @@
 // crediting https://git.generalassemb.ly/SDA-SEB-02-V/DRF-example/blob/main/cat-collector-frontend/src/lib/auth.js
 import axios from "axios"
-// Remember to do npm install jwt-decode
+
 import { jwtDecode } from "jwt-decode"
 
 

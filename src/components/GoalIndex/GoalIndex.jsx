@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
-import axios from 'axios'
 import { getAllGoalsService, deleteSingleGoalService } from '../../services/GoalService'
 import GoalForm from '../GoalForm/GoalForm'
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete'

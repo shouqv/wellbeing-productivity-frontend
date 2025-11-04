@@ -13,8 +13,6 @@ function EmotionForm() {
   const [todaySubmittedEmotion, setTodaySubmittedEmotion] = useState(null);
 
 
-  // TODO - remember when the user enter a new day the below code wont run becuase it wont know unless they refresh or navigate away and comde bac
-  //  later on maybe link and chekc the today date if it changed to be adependency in the below 
   useEffect(() => {
     async function checkToday() {
       try {
@@ -43,7 +41,6 @@ function EmotionForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!selectedMood || !feelingText) {
-      // i can make a popup later, or using toast
       alert("please select a mood and write your feeling.");
       return;
     }
@@ -51,7 +48,6 @@ function EmotionForm() {
     try {
       setLoading(true);
       const response = await addEmotionService({
-        // user: 1,
         emoji: selectedMood,
         feeling_text: feelingText,
       })
@@ -65,17 +61,6 @@ function EmotionForm() {
       setLoading(false);
     }
   };
-  // if (todaySubmittedEmotion) {
-  //   return (
-  //     <div>
-  //       <h2>You have already checked in today 🌞</h2>
-  //       <p>Todays chosen mood: {todaySubmittedEmotion.emoji} </p>
-  //       <p>Todays journal: {todaySubmittedEmotion.feeling_text} </p>
-  //       <p>Message: {todaySubmittedEmotion.ai_response} </p>
-  //       <p>Come back tomorrow to share how you feel again 💬</p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="emotions-big-container">
@@ -127,7 +112,7 @@ function EmotionForm() {
         :
         alreadySubmitted ?
           < div className="div-bubble-ai" >
-            <h3>Beam's assistant</h3>
+            <h3>Beam's Assistant</h3>
             <p className="bubble-ai">{todaySubmittedEmotion?.ai_response}</p>
 
           </div> : <></>

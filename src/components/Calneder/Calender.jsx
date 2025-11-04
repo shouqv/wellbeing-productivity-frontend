@@ -25,10 +25,8 @@ function Calender({ tasks, getTodayTask, setDate }) {
 
 
     const calendar = useCalendarApp({
-        // isDark: true,
         // crediting: https://stackoverflow.com/questions/1091372/getting-the-clients-time-zone-and-offset-in-javascript
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        // views: [createViewDay(), createViewMonthAgenda(), createViewMonthGrid(), createViewWeek()],
         views: [createViewMonthAgenda()],
         events: [],
         plugins: [eventsService, calendarControls],

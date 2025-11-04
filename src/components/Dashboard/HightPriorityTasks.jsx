@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import { authRequest } from "@/services/auth"
 import {
     Card,
     CardContent,

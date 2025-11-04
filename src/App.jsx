@@ -29,7 +29,6 @@ function App() {
 
         <div className={isHome ? '' : 'app-content'}>
           <Routes>
-            {/* once they login send them to the dashboard */}
             <Route path='/login' element={<Login setUser={setUser} />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/' element={<HomePage />} />

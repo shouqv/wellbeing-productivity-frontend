@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import { authRequest } from "@/services/auth"
 import noDataIcon from '../../assets/noData.png'
 import {
     Card,

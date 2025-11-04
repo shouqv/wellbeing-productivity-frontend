@@ -1,12 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import '../../styles/HomePage.css';
-import bg from '../../assets/bg3.png';
+import bg from '../../assets/background.png';
 import { Link } from 'react-router';
 
 function HomePage() {
   const [hovered, setHovered] = useState(false);
   const [hoveredLink, setHoveredLink] = useState('');
+
+
   return (
     <div className="big-homepage-full-container">
       <div className="homepage-full-container fade-in">

@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react"
-import { TrendingUp } from "lucide-react"
-import axios from "axios"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
-import { authRequest } from "@/services/auth"
 import noDataIcon from '../../assets/noData.png'
 
 import {

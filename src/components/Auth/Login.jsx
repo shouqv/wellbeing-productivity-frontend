@@ -1,10 +1,10 @@
-// crediting https://git.generalassemb.ly/SDA-SEB-02-V/DRF-example/blob/main/cat-collector-frontend/src/components/Auth/Login.jsx
 import React, { useState } from "react"
 import axios from "axios"
 import { saveTokens, getUserFromToken } from "../../services/auth"
 import { useNavigate } from "react-router"
 import '../../styles/HomePage.css'
 
+// crediting https://git.generalassemb.ly/SDA-SEB-02-V/DRF-example/blob/main/cat-collector-frontend/src/components/Auth/Login.jsx
 export default function Login({ setUser }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
