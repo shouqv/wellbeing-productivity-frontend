@@ -3,6 +3,7 @@ import { TrendingUp } from "lucide-react"
 import axios from "axios"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { authRequest } from "@/services/auth"
+import noDataIcon from '../../assets/noData.png'
 
 import {
     Card,
@@ -28,7 +29,7 @@ const chartConfig = {
 
 // crediting https://ui.shadcn.com/charts/bar#charts
 export function GoalBarChart({ data }) {
-    
+
 
     const goalsInfo = data?.goals_info || []
 
@@ -53,48 +54,68 @@ export function GoalBarChart({ data }) {
             <CardContent className="overflow-x-auto">
                 <div style={{ width: 500 }}>
                     <ChartContainer config={chartConfig} style={{ width: chartWidth, minWidth: '100%', height: "200px" }}>
-                        <BarChart
-                            data={chartData}
-                            margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
-                            width={chartWidth}
-                        >
-                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                            <XAxis
-                                dataKey="label"
-                                tickLine={false}
-                                axisLine={false}
-                                tickMargin={10}
-                                interval={0}
-                            />
-                            <YAxis allowDecimals={false} />
-                            {/* crediting https://github.com/shadcn-ui/ui/discussions/4423#discussioncomment-12625157 */}
-                            <ChartTooltip
-                                cursor={false}
-                                content={(props) => {
-                                    if (!props.active || !props.payload?.length) return null;
-                                    const data = props.payload[0].payload;
-                                    return (
-                                        <div className="p-2 border rounded shadow-sm bg-white/80">
-                                            <div><strong>Goal: </strong>{data.goal}</div>
-                                            <div><strong>Completed: </strong>{data.completed}</div>
-                                        </div>
-                                    );
-                                }}
-                            />
-                            <Bar
-                                dataKey="completed"
-                                fill="#000000"
-                                radius={6}
-                                barSize={40}
-                            />
-                        </BarChart>
+                        {
+                            goalsInfo.length === 0 ? <div style={{
+                                backgroundColor: "#dfdfdf",
+                                margin:"20px 120px",
+                                pading: '30px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: "center",
+                                alignItems: "center",
+                                borderRadius: '0.5rem',
+
+
+                            }} >
+                                <p style={{ padding: '20px 20px 10px 20px', }}>No goals entries yet</p>
+                                <img src={noDataIcon} width={50} />
+                            </div>
+
+                                : <BarChart
+                                    data={chartData}
+                                    margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+                                    width={chartWidth}
+                                >
+                                    <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                                    <XAxis
+                                        dataKey="label"
+                                        tickLine={false}
+                                        axisLine={false}
+                                        tickMargin={10}
+                                        interval={0}
+                                    />
+                                    <YAxis allowDecimals={false} />
+                                    {/* crediting https://github.com/shadcn-ui/ui/discussions/4423#discussioncomment-12625157 */}
+                                    <ChartTooltip
+                                        cursor={false}
+                                        content={(props) => {
+                                            if (!props.active || !props.payload?.length) return null;
+                                            const data = props.payload[0].payload;
+                                            return (
+                                                <div className="p-2 border rounded shadow-sm bg-white/80">
+                                                    <div><strong>Goal: </strong>{data.goal}</div>
+                                                    <div><strong>Completed: </strong>{data.completed}</div>
+                                                </div>
+                                            );
+                                        }}
+                                    />
+                                    <Bar
+                                        dataKey="completed"
+                                        fill="#000000"
+                                        radius={6}
+                                        barSize={40}
+                                    />
+                                </BarChart>
+                        }
+
+
                     </ChartContainer>
                 </div>
             </CardContent>
 
             <CardFooter className="dashboard-widget-footer">
 
-                    Hover to see full goal details
+                Hover to see full goal details
 
             </CardFooter>
         </Card>

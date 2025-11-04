@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { authRequest } from "@/services/auth"
+import noDataIcon from '../../assets/noData.png'
 import {
     Card,
     CardContent,
@@ -17,7 +18,7 @@ function AiAnalysis({ data }) {
             <CardHeader>
                 <CardTitle className="dashboard-widget-title">Insights of this week:</CardTitle>
             </CardHeader>
-            <CardContent className = "dashboard-ai-widget">
+            <CardContent className="dashboard-ai-widget">
                 {weeklyEntries?.length
                     ? <><div className="overflow-y-auto rounded p-2">
                         <div style={{ height: "150px" }}>
@@ -26,7 +27,21 @@ function AiAnalysis({ data }) {
                             </p>
                         </div>
                     </div></>
-                    : <p>No Emotion entries yet😌</p>}
+                    : <div style={{
+                        backgroundColor: "#dfdfdf",
+                        margin:"20px 100px",
+                        pading: '30px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: '0.5rem',
+                        
+                    }} >
+                        <p style={{ padding: '20px 20px 10px 20px', }}>No emotions entries yet</p>
+                        <img src={noDataIcon} width={50} />
+                    </div>
+                }
 
                 <CardFooter>
 
