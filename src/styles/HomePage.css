@@ -1,67 +1,88 @@
-.big-homepage-full-container{
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-   justify-content: center; 
-   background-color: #090a07;
-    overflow: hidden;
+.big-homepage-full-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  background-color: #090a07;
+  overflow: hidden;
 }
 
 .homepage-full-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 50vw;
-    max-width: 60vw;
-    margin-top: 9%;
-        z-index: 100;
-        color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
+  /* max-width: 53vw; */
+  margin-top: 9%;
+  z-index: 100;
+  color: whitesmoke;
 }
 
 .title {
-  font-size: 3em;
+  font-size: 4em;
   padding: 40px 0 20px 0;
   letter-spacing: 2px;
   color: whitesmoke;
 }
 
 
-.desc{
-    font-size: 1.4em;
-    font-weight: 100;
+.desc {
+  font-size: 1.4em;
+  font-weight: 100;
+  line-height: 1.5;
+  text-align: justify;
+  text-justify: inter-word;
+  /* width: 65%; */
+  width: 650px;
 }
 
-.homepage-full-container> :last-child{
-    margin-left: auto;
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
+
+
+
+.homepage-full-container> :last-child {
+  margin-left: auto;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .links a {
-    background-color: rgb(233, 233, 233);
-    padding:10px;
-    min-width: 60px;
-    text-align: center;
-    border-radius: 10px;
-    color: rgb(0, 0, 0);
-    font-size: 0.8em;
-     transition: all 0.3s ease;
-     margin-top: 1px;
-    
+  background-color: rgb(233, 233, 233);
+  padding: 10px;
+  min-width: 70px;
+  text-align: center;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  transition: all 0.3s ease;
+  margin-top: 1px;
+
 }
 
 .links a:hover {
-    transform: translateY(-5px); 
-    background-color: #ffffff; 
+  transform: translateY(-5px);
+  background-color: #ffffff;
 }
-.background{
+
+
+.blured-item{
+    filter: blur(4px);
+    transition: filter 0.5s ease;
+}
+.title,
+.desc,
+.background , link{
+  transition: filter 0.5s ease;
+}
+
+
+.background {
   position: fixed;
   bottom: 0;
   z-index: 2;
   height: 90vh;
   width: 60vw;
   object-fit: cover;
-  
+
   /* filter: brightness(0.8); */
 }
 
