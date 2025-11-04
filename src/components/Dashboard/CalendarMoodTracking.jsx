@@ -12,7 +12,8 @@ import "@schedule-x/theme-default/dist/index.css";
 // customized for mood calendar
 
 function CalendarMoodTracking({ data }) {
-    const emojiData = data?.weekly_emotions || []
+    const emojiData = data?.emojis_this_month || []
+
 
     const eventsService = useState(() => createEventsServicePlugin())[0];
     const calendarControls = useState(() =>
