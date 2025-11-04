@@ -92,7 +92,6 @@ video {
   vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -133,30 +132,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-/* end of reseting css */
-
-
-
-/* .app-nav-bar {
-  position: fixed;          
-  top: 0;
-  left: 0;
-  width: 220px;             
-  height: 100vh;            
-  background-color: #1e293b;
-  color: white;
-  overflow-y: auto;
-}
-
-
-.app-main-content {
-  margin-left: 220px;       
-  padding: 24px;
-  height: 100vh;
-  overflow-y: auto;
-  background-color: #f9fafb;
-} */
 
 /* crediting the inspired design from: https://dribbble.com/shots/26171921-To-do-Productivity-App */
 /* crediting the shadow boxes: https://getcssscan.com/css-box-shadow-examples */
@@ -359,7 +334,9 @@ h1 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-
+.global-btn:disabled {
+    background-color: #5c5c5c;
+}
 form label {
   padding-right: 5px;
 }
