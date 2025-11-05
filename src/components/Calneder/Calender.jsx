@@ -52,7 +52,7 @@ function Calender({ tasks, getTodayTask, setDate }) {
             eventsService.set(mappedEvents);
         }
 
-    }, [tasks, eventsService]);
+    }, [tasks, eventsService])
 
     return (
         <div className="calendar-container">

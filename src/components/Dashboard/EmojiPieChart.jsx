@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { authRequest } from "@/services/auth";
+import React, { useState, useEffect } from "react"
+import { PieChart, Pie, Cell, Tooltip } from "recharts"
 import noDataIcon from '../../assets/noData.png'
 
 import {
@@ -10,13 +9,13 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 
 // creditng https://ui.shadcn.com/charts/pie
-const COLORS = ["#1c1c1c", "#3c3c3c", "#5a5a5a", "#7a7a7a", "#9b9b9b", "#bfbfbf", "#dcdcdc"];
+const COLORS = ["#1c1c1c", "#3c3c3c", "#5a5a5a", "#7a7a7a", "#9b9b9b", "#bfbfbf", "#dcdcdc"]
 
 export default function EmojiPieChart({ data }) {
-    const emojiCounts = data?.emoji_counts || {};
+    const emojiCounts = data?.emoji_counts || {}
     const chartData = Object.keys(emojiCounts).map((emoji) => ({
         name: emoji,
         value: emojiCounts[emoji],

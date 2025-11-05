@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { addEmotionService, checkEmotionSubmissionService } from "../../services/EmotionService";
-import '../../styles/EmotionTab.css';
-import sendIcon from '../../assets/send.png';
+import { useState, useEffect } from "react"
+import { addEmotionService, checkEmotionSubmissionService } from "../../services/EmotionService"
+import '../../styles/EmotionTab.css'
+import sendIcon from '../../assets/send.png'
 
 function EmotionForm() {
-  const [selectedMood, setSelectedMood] = useState(null);
-  const [feelingText, setFeelingText] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [aiResponse, setAiResponse] = useState(null);
-  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
-  const [todaySubmittedEmotion, setTodaySubmittedEmotion] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(null)
+  const [feelingText, setFeelingText] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [aiResponse, setAiResponse] = useState(null)
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false)
+  const [todaySubmittedEmotion, setTodaySubmittedEmotion] = useState(null)
 
 
   useEffect(() => {
@@ -41,8 +40,8 @@ function EmotionForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!selectedMood || !feelingText) {
-      alert("please select a mood and write your feeling.");
-      return;
+      alert("please select a mood and write your feeling.")
+      return
     }
 
     try {
@@ -53,10 +52,10 @@ function EmotionForm() {
       })
 
 
-      setAiResponse(response.data.ai_response);
+      setAiResponse(response.data.ai_response)
       setAlreadySubmitted(true)
     } catch (error) {
-      console.error("error sending emotion:", error);
+      console.error("error sending emotion:", error)
     } finally {
       setLoading(false);
     }

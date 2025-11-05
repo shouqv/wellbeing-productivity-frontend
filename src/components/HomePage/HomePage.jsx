@@ -1,12 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
-import '../../styles/HomePage.css';
-import bg from '../../assets/background.png';
-import { Link } from 'react-router';
+import React from 'react'
+import { useState } from 'react'
+import '../../styles/HomePage.css'
+import bg from '../../assets/background.png'
+import { Link } from 'react-router'
 
 function HomePage() {
-  const [hovered, setHovered] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState('');
+  const [hovered, setHovered] = useState(false)
+  const [hoveredLink, setHoveredLink] = useState('')
 
 // crediting the design from https://dribbble.com/shots/26577503-AstroNext-AI-Driven-Space-Technology
   return (

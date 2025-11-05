@@ -3,7 +3,6 @@
     flex-direction: column;
     gap: 3vh;
     background-color: #FFFFFF;
-    /* background-color: transparent; */
     border-radius: 15px;
     padding: 5vh 2vw 5vh 2vw;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -37,7 +36,6 @@
 
 
 /* crediting https://neumorphism.io/#e0e0e0 */
-
 
 
 

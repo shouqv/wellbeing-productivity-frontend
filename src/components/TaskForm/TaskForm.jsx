@@ -1,20 +1,9 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useNavigate, useParams } from 'react-router'
 import { addTaskService, updateTaskService, getSingleTaskSercive, unLinkTaslToGoalService, linkTaslToGoalService } from '../../services/TaskService'
 import { getAllGoalsService } from '../../services/GoalService'
 import '../../styles/popupWindow.css'
 
-// {
-//  {
-//             "id": 1,
-//              "content": "do front end",
-//             "date": "2025-10-27",
-//             "priority": 1,
-//              "status": "pending",
-//              "user": 1
-//          }
-// }
+
 
 function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, getTodayTask, setTaskId }) {
     const [formData, setFormData] = useState({
@@ -22,8 +11,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         date: date,
         priority: '1',
         status: 'pending',
-        // for now
-        // user: user?.user_id
     })
     const [goals, setGoals] = useState([])
     const [checkedGoals, setCheckedGoals] = useState([])
@@ -76,19 +63,18 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
         console.log(response)
         if (response.status === 201 || response.status === 200) {
 
-            const removedRelationship = initialCheckedGoals.filter(element => !checkedGoals.includes(element));
+            const removedRelationship = initialCheckedGoals.filter(element => !checkedGoals.includes(element))
             const addedRelationship = checkedGoals.filter(element => !initialCheckedGoals.includes(element))
 
             for (const goalId of removedRelationship) {
-                await unLinkTaslToGoalService(response.data.id, goalId);
+                await unLinkTaslToGoalService(response.data.id, goalId)
             }
 
             for (const goalId of addedRelationship) {
-                await linkTaslToGoalService(response.data.id, goalId);
+                await linkTaslToGoalService(response.data.id, goalId)
             }
             getAllTasks()
             getTodayTask(formData.date)
-            // close the model
             setShowTaskForm(false)
             setTaskId(null)
             setCheckedGoals([])
@@ -98,7 +84,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                 date: date,
                 priority: '1',
                 status: 'pending',
-                // user: user?.user_id
             })
         }
 
@@ -107,10 +92,10 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
     function handleGoalToggle(goalId) {
         if (checkedGoals.includes(goalId)) {
             // this checks if it exist, it will be removed
-            setCheckedGoals(checkedGoals.filter(id => id !== goalId));
+            setCheckedGoals(checkedGoals.filter(id => id !== goalId))
         } else {
 
-            setCheckedGoals([...checkedGoals, goalId]);
+            setCheckedGoals([...checkedGoals, goalId])
         }
     }
 
@@ -120,13 +105,12 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
     // the date changes using the date selector in the calender 
     useEffect(() => {
         // below ensure if the user opened an edit window in a day, then switched to another day the info is 
-        // reseted and the popup windo is closeed
+        // reseted and the popup window is closeed
         setFormData({
             content: '',
             date: date,
             priority: '1',
             status: 'pending',
-            // user: user?.user_id
         })
         setTaskId(null)
         setShowTaskForm(false)
@@ -141,7 +125,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                 date: date,
                 priority: '1',
                 status: 'pending',
-                // user: user?.user_id
             })
         }
     }, [taskId])
@@ -162,7 +145,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                             date: date,
                             priority: '1',
                             status: 'pending',
-                            // user: user?.user_id
                         })
                         setTaskId(null)
                     }}>X</button>
@@ -205,7 +187,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                             </label>
                         })
                             : <></>}
-                        {/* <p>unlinked goals:</p> */}
                         {formData.goals_doesnot_belong_to_task?.map((goal, index) => {
                             return <label key={index}>
                                 <input

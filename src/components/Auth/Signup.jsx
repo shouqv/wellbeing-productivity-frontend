@@ -12,7 +12,7 @@ export default function SignUp() {
 
   const [message, setMessage] = useState('')
 
-  const [strength, setStrength] = useState(0);
+  const [strength, setStrength] = useState(0)
   const navigate = useNavigate()
   const BASE_URL = import.meta.env.VITE_API_URL
 
@@ -36,9 +36,9 @@ export default function SignUp() {
   }
 
   const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    checkStrength(value);
+    const value = e.target.value
+    setPassword(value)
+    checkStrength(value)
   }
   // crediting https://www.geeksforgeeks.org/javascript/create-a-password-strength-checker-using-html-css-and-javascript/ 
   // for password checking display
@@ -63,8 +63,8 @@ export default function SignUp() {
   }
 
   const widthPower = ["1%", "25%", "50%", "75%", "100%"];
-  const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
-  const strengthText = ["Too Weak", "Weak", "Fair", "Good but not enough", "Strong"];
+  const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"]
+  const strengthText = ["Too Weak", "Weak", "Fair", "Good but not enough", "Strong"]
 
   return (
     <div className='big-homepage-full-container'>

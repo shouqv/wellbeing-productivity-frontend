@@ -139,7 +139,6 @@ table {
 .app-main-div {
   display: flex;
   height: 100vh;
-  /* background-color: #E5E7EB;  */
   background-color: #F0F0F0;
 
 }
@@ -156,9 +155,7 @@ table {
 .app-content {
   flex: 1;
   padding: 24px;
-  /* background-color: #E5E7EB; */
   background-color: #F0F0F0;
-  /* background-color: #EDF0F2; */
   overflow-y: auto;
 }
 
@@ -181,8 +178,6 @@ h1 {
 }
 
 
-
-/* this is the big container that contains the main element */
 .big-main-container {
   background-color: #FFFFFF;
   border-radius: 0 15px 15px 15px;
@@ -215,7 +210,6 @@ h1 {
 .filter-selector.active {
   background-color: #fff;
   color: black;
-  /* font-weight: 600; */
 }
 
 .filter-selector.unactive {
@@ -230,7 +224,6 @@ h1 {
   row-gap: 15px;
   justify-content: center;
   align-items: center;
-  /* background-color: aquamarine; */
 }
 
 .widget-list-item {
@@ -239,9 +232,6 @@ h1 {
   padding: 1vh 2vw 1vh 2vw;
   width: 50vw;
   overflow-wrap: break-word;
-
-  /* word-wrap: break-word;       
-  white-space: normal;           */
 }
 
 .widget-list-item-container h3 {
