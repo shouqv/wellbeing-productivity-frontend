@@ -66,6 +66,18 @@ Displays important information to the user such as:
 ## BACKEND-END REPOSITORY
 [BACKEND End](https://github.com/shouqv/wellbeing-productivity-backend)
 
+## FRONTEND ROUTING TABLE
+| Path | Component | Description |
+|:-----|:----------|:------------|
+| / | HomePage | Display the homepage for unauthenticated users |
+| /login | Login | Display the login form and allow users to log in |
+| /signup | SignUp | Display the signup form to allow new users to create an account |
+| /dashboard | Dashboard | Display the authenticated user's dashboard data |
+| /goals | GoalIndex | Display the authenticated user's goals |
+| /tasks | TaskIndex | Display the authenticated user's tasks |
+| /mood | EmotionForm | Display the mood/journal check-in form. If the user has already checked in, it will display the information accordingly |
+| /visionboard | VisionBoard | Display the authenticated user's vision board |
+
 ## INSTALLATION INSTRUCTION (Docker)
 1. Clone both repositories into the same parent folder:
 
@@ -101,3 +113,7 @@ Note:
 - Implement reminders so users can be notified of upcoming or pending tasks.
 - Provide a dedicated account page where users can view and edit additional profile information.
 - Make AI-generated supportive messages personalized like the trend analysis response. Currently, only the trend analysis is tailored to the user.
+
+
+
+
