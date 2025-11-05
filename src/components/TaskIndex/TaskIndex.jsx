@@ -56,7 +56,6 @@ function TaskIndex() {
                 dateCalender = new Date().toLocaleDateString('en-CA')
             }
             const response = await getAllTasksService(dateCalender)
-            console.log(response.data)
             setTodayTasks(response.data)
 
             setFilter('all')
@@ -71,7 +70,6 @@ function TaskIndex() {
         getAllTasks()
         // get the tasks for today when the user first navigate to this page
         getTodayTask()
-        console.log(todayTasks)
     }, [])
 
     useEffect(() => {
@@ -82,9 +80,7 @@ function TaskIndex() {
     const getTasksByFilter = (filter) => {
 
         setFilter(filter)
-        console.log("inside")
         if (!todayTasks) return
-        console.log("in")
         switch (filter) {
             case 'pending':
                 setFilteredTasks(todayTasks.pending_tasks)

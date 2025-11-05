@@ -18,7 +18,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
 
     function handleChange(event) {
         setFormData({ ...formData, [event.target.name]: event.target.value })
-        console.log(formData)
     }
 
     async function getAllGoals() {
@@ -37,7 +36,6 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
 
     async function getSingleTask() {
         const response = await getSingleTaskSercive(taskId)
-        console.log(response.data)
         setFormData(response.data)
 
         const linkedGoalIds = response.data.goals_belong_to_task?.map(g => g.id) || []
@@ -46,13 +44,12 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
     }
 
 
-    console.log("from the form" + taskId)
+
 
     async function handleSubmit(event) {
         event.preventDefault()
         let response = {}
         setFormData({ ...formData, priority: Number(formData['priority']) })
-        console.log(formData)
         if (taskId) {
             response = await updateTaskService(formData, taskId)
 
@@ -60,7 +57,7 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
             response = await addTaskService(formData)
         }
 
-        console.log(response)
+
         if (response.status === 201 || response.status === 200) {
 
             const removedRelationship = initialCheckedGoals.filter(element => !checkedGoals.includes(element))
@@ -176,8 +173,8 @@ function TaskForm({ date, showTaskForm, taskId, setShowTaskForm, getAllTasks, ge
                     {goals ? <h4>Available goals:</h4> : <></>}
                     <div className={goals ? 'linked-goals-container' : ''}>
                         <div className='linked-goals-items'>
-                        {taskId ? formData.goals_belong_to_task?.map(goal => {
-                            return <label>
+                        {taskId ? formData.goals_belong_to_task?.map((goal , index) => {
+                            return <label key ={index}>
                                 <input
                                     type="checkbox"
                                     checked={checkedGoals.includes(goal.id)}
