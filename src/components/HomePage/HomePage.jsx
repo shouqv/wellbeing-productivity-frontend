@@ -8,7 +8,7 @@ function HomePage() {
   const [hovered, setHovered] = useState(false);
   const [hoveredLink, setHoveredLink] = useState('');
 
-
+// crediting the design from https://dribbble.com/shots/26577503-AstroNext-AI-Driven-Space-Technology
   return (
     <div className="big-homepage-full-container">
       <div className="homepage-full-container fade-in">
