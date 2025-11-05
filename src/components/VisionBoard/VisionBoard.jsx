@@ -8,16 +8,15 @@ function VisionBoard() {
     const store = useMemo(() => createTLStore(), [])
     const [loadingState, setLoadingState] = useState({ status: 'loading' })
     const [saving, setSaving] = useState(false)
-
+    const BASE_URL = import.meta.env.VITE_API_URL
 
     useEffect(() => {
         const fetchVisionBoard = async () => {
             setLoadingState({ status: 'loading' })
             try {
-                console.log("call from fetchvision")
                 const res = await authRequest({
                     method: 'get',
-                    url: 'http://127.0.0.1:8000/api/visionboard/',
+                    url: `${BASE_URL}/visionboard/`,
                 })
 
                 if (res.data.tldraw_data) {
@@ -40,13 +39,13 @@ function VisionBoard() {
         try {
             await authRequest({
                 method: 'put',
-                url: 'http://127.0.0.1:8000/api/visionboard/',
+                url: `${BASE_URL}/visionboard/`,
                 data: { tldraw_data: snapshot },
             })
-            alert('vision board saved')
+            
         } catch (err) {
             console.error('failed to save vision board:', err)
-            alert('failed to save. Check console for details.')
+            
         }
         setSaving(false)
     }

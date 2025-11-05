@@ -6,7 +6,7 @@ import HightPriorityTasks from "./HightPriorityTasks"
 import AiAnalysis from "./AiAnalysis"
 import AchievedGoals from "./AchievedGoals"
 import CalendarMoodTracking from "./CalendarMoodTracking"
-import { authRequest } from "@/services/auth"
+import { getDashboardInfoService } from "@/services/DashboardService"
 
 import '../../styles/Dashboard.css'
 
@@ -18,10 +18,7 @@ function Dashboard() {
   useEffect(() => {
     async function fetchDashboardData() {
       try {
-        const response = await authRequest({
-          method: "get",
-          url: "http://127.0.0.1:8000/api/dashboard/",
-        })
+        const response = await getDashboardInfoService()
         setDashboardData(response.data)
       } catch (err) {
         console.error("Error fetching dashboard data:", err)

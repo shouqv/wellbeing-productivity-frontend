@@ -9,13 +9,13 @@ export default function Login({ setUser }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-
   const [message, setMessage] = useState('')
 
+  const BASE_URL = import.meta.env.VITE_API_URL
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/login/", { username, password })
+      const res = await axios.post(`${BASE_URL}/login/`, { username, password })
       saveTokens(res.data.access, res.data.refresh)
       setUser(getUserFromToken())
       navigate("/dashboard")

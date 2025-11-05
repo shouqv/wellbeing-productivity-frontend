@@ -14,12 +14,13 @@ export default function SignUp() {
 
   const [strength, setStrength] = useState(0);
   const navigate = useNavigate()
+  const BASE_URL = import.meta.env.VITE_API_URL
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     let response = ''
     try {
-      response = await axios.post('http://127.0.0.1:8000/api/signup/', { username, password, email })
+      response = await axios.post(`${BASE_URL}/signup/`, { username, password, email })
       navigate('/login')
     } catch (err) {
       console.log(err)
