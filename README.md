@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-Beam is a solo project and represents my capstone project for the Software Engineering Bootcamp presented by General Assembly, with support from the Saudi Digital Academy.
+Beam is my solo capstone project for the Software Engineering Bootcamp, presented by General Assembly, with support from the Saudi Digital Academy.
 
 Beam is a full-stack productivity app that allows users to:
 - Track tasks and display them in an integrated calendar
@@ -13,6 +13,9 @@ Beam is a full-stack productivity app that allows users to:
 The core idea of this app is to enhance productivity in a healthy way, supporting users to manage tasks effectively while taking care of their mental well-being.
 
 ## CORE FEATURES:
+### Authentication
+- Users can create an account and securely log in using JWT-based authentication.
+- Authenticated users gain access to personalized dashboards, tasks, goals, mood tracking, and vision boards.
 ### Dashboard
 Displays important information to the user such as:
 - Frequency of selected moods (emojis) throughout the month (pie chart)
@@ -44,15 +47,17 @@ Displays important information to the user such as:
 
 ## TECH STACK
 
+### Backend:
+- Language & Framework: Python, Django
+- API Library: Django REST Framework, djangorestframework-simplejwt (JWT authentication)
+- Middleware: CORS Headers
+- Database: PostgreSQL
+- AI / LLM: Ollama (local) with the ALIENTELLIGENCE/mentalwellness model
+- Environment / Config: python-decouple, python-dotenv
 ### Frontend:
 - Framework & Libraries: React, React Router
 - Styling: Tailwind CSS, Vanilla CSS
-- Tools & Features: Schedule-X, Tldraw, Shadcn, JWT-Decode
-### Backend:
-- Framework & Language: Django REST Framework, Python
-- Middleware: CORS Headers
-- AI / LLM: Ollama (local) with the ALIENTELLIGENCE/mentalwellness model
-- Database: PostgreSQL
+- Tools & Libraries: Schedule-X, Tldraw, Shadcn, JWT-Decode, Axios
 ### Dev tools:
 - Git & GitHub
 - Docker
